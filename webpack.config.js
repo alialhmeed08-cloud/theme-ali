@@ -1,31 +1,19 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const asset     = file => path.resolve('src/assets', file || '');
+const publicDir = file => path.resolve('public', file || '');
 
 module.exports = {
-  entry: {
-    app: [
-      path.resolve(__dirname, 'src/assets/js/app.js'),
-      path.resolve(__dirname, 'src/assets/styles/app.css')
-    ],
-    pages: [
-      path.resolve(__dirname, 'src/assets/js/pages.js'),
-      path.resolve(__dirname, 'src/assets/styles/pages.css')
-    ]
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    clean: true
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      }
-    ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({ filename: '[name].css' })
-  ]
+    entry: {
+        app:   [asset('styles/app.css'),   asset('js/app.js')],
+        pages: [asset('styles/pages.css'), asset('js/pages.js')]
+    },
+    output: { path: publicDir(), clean: true },
+    module: {
+        rules: [
+            { test: /\.css$/i, use: [MiniCssExtractPlugin.loader, { loader: "css-loader", options: { url: false } }] }
+        ]
+    },
+    plugins: [ new MiniCssExtractPlugin() ]
 };

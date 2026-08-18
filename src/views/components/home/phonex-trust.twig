@@ -1,0 +1,54 @@
+{# PhoneX — لماذا PhoneX؟ مزايا الثقة (home.phonex-trust) #}
+{% set title    = component.settings.get('title') %}
+{% set features = component.settings.get('features') %}
+
+<section class="px-section" id="trust">
+    <div class="container">
+
+        <div class="px-section__head">
+            <div>
+                <span class="px-kicker">لماذا PhoneX؟</span>
+                <h2 class="px-section__title">{{ title|default('تجربة تُصنع بثقة') }}</h2>
+            </div>
+        </div>
+
+        <div class="px-trust">
+            {% if features is not empty %}
+                {% for feature in features %}
+                    <div class="px-feature reveal" data-delay="{{ loop.index }}">
+                        <span class="px-feature__num px-num">{{ loop.index < 10 ? '0' ~ loop.index : loop.index }}</span>
+                        <div class="px-feature__icon"><i class="{{ feature['features.icon']|default('sicon-store2') }}"></i></div>
+                        <h3 class="px-feature__title">{{ feature['features.title'] }}</h3>
+                        <p class="px-feature__desc">{{ feature['features.description'] }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="px-feature reveal" data-delay="1">
+                    <span class="px-feature__num px-num">01</span>
+                    <div class="px-feature__icon"><i class="sicon-packed-box"></i></div>
+                    <h3 class="px-feature__title">توصيل خلال 24 ساعة</h3>
+                    <p class="px-feature__desc">نوصّل لجميع مناطق المملكة بسرعة قياسية وبكل أمان</p>
+                </div>
+                <div class="px-feature reveal" data-delay="2">
+                    <span class="px-feature__num px-num">02</span>
+                    <div class="px-feature__icon"><i class="sicon-award-ribbon"></i></div>
+                    <h3 class="px-feature__title">ضمان رسمي كامل</h3>
+                    <p class="px-feature__desc">جميع أجهزتنا أصلية ومضمونة بضمان رسمي من الشركة</p>
+                </div>
+                <div class="px-feature reveal" data-delay="3">
+                    <span class="px-feature__num px-num">03</span>
+                    <div class="px-feature__icon"><i class="sicon-calendar-date"></i></div>
+                    <h3 class="px-feature__title">تقسيط بدون فوائد</h3>
+                    <p class="px-feature__desc">قسّم على 12 شهر بدون فوائد مع جميع البطاقات الرئيسية</p>
+                </div>
+                <div class="px-feature reveal" data-delay="1">
+                    <span class="px-feature__num px-num">04</span>
+                    <div class="px-feature__icon"><i class="sicon-inbox-full"></i></div>
+                    <h3 class="px-feature__title">استبدال مجاني</h3>
+                    <p class="px-feature__desc">استبدل جهازك خلال 7 أيام إذا لم تكن راضياً تماماً</p>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</section>

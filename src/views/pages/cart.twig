@@ -1,0 +1,47 @@
+{# PhoneX — صفحة السلة #}
+{% extends "layouts.master" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ 'pages.css' | asset }}">
+{% endblock %}
+
+{% block content %}
+    <section class="px-section">
+        <div class="container">
+
+            <div class="px-cart-page">
+                <div class="px-listing__title-row">
+                    <h1 class="px-section__title">سلة المشتريات</h1>
+                    {% if cart.items_count is defined and cart.items_count > 0 %}
+                        <span class="px-listing__count">{{ cart.items_count }} منتج</span>
+                    {% endif %}
+                </div>
+
+                {% hook 'cart:items.start' %}
+
+                <div class="px-cart-page__items" data-testid="store-cart-items">
+                    {# تُحقن هنا عناصر السلة عبر منصة سلة والتطبيقات #}
+                </div>
+
+                {% hook 'cart:items.end' %}
+
+                <div class="px-cart-page__foot">
+                    {% if cart.items_count is defined and cart.items_count > 0 %}
+                        <div class="px-cart-page__total">
+                            <span>الإجمالي</span>
+                            <b class="px-num">{{ cart.total }}</b>
+                        </div>
+                    {% else %}
+                        <div class="px-empty">
+                            <div class="px-empty__icon">🛒</div>
+                            <h2 class="px-empty__title">سلتك فارغة حالياً</h2>
+                            <p class="px-empty__desc">اكتشف أحدث الأجهزة وابدأ التسوق الآن</p>
+                            <a href="{{ store.url }}products" class="px-btn px-btn--primary">تسوّق الآن</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

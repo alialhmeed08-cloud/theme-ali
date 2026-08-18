@@ -1,0 +1,82 @@
+{# PhoneX — عرض اليوم مع العدّاد التنازلي (home.phonex-deal) #}
+{% set title         = component.settings.get('title') %}
+{% set subtitle      = component.settings.get('subtitle') %}
+{% set deal_products = component.settings.get('product') %}
+{% set ends_at       = component.settings.get('ends_at', '2025-12-31 23:59:59') %}
+{% set saved_text    = component.settings.get('saved_text') %}
+{% set stock_text    = component.settings.get('stock_text') %}
+{% set stock_percent = component.settings.get('stock_percent', 82) %}
+
+<section class="px-section" id="deal">
+    <div class="container">
+        <div class="px-deal reveal">
+            <div class="px-deal__grid">
+
+                <div class="px-deal__content">
+                    <span class="px-kicker">🔥 {{ subtitle|default('عرض محدود الوقت — اليوم الواحد') }}</span>
+                    <h2 class="px-section__title">{{ title|default('لا تفوّت هذا السعر') }}</h2>
+                    <p class="px-section__sub" style="margin-top:.4rem">ينتهي العرض خلال:</p>
+
+                    <div class="px-deal__timer" data-countdown="{{ ends_at }}">
+                        <div class="px-count">
+                            <span class="px-count__val px-num" data-cd-h>00</span>
+                            <span class="px-count__label">ساعة</span>
+                        </div>
+                        <div class="px-count">
+                            <span class="px-count__val px-num" data-cd-m>00</span>
+                            <span class="px-count__label">دقيقة</span>
+                        </div>
+                        <div class="px-count">
+                            <span class="px-count__val px-num" data-cd-s>00</span>
+                            <span class="px-count__label">ثانية</span>
+                        </div>
+                    </div>
+
+                    {% if deal_products is not empty %}
+                        {% for product in deal_products is iterable ? deal_products : [deal_products] %}
+                            <h3 class="px-deal__name">📱 {{ product.name }}</h3>
+                            {% if saved_text %}<span class="px-deal__saved">{{ saved_text }}</span>{% endif %}
+                            <div class="px-deal__prices">
+                                <span class="px-deal__price px-num">{{ product.price }}</span>
+                            </div>
+                            <div class="px-stock">
+                                <div class="px-stock__bar">
+                                    <div class="px-stock__fill" style="width:{{ stock_percent }}%"></div>
+                                </div>
+                                {% if stock_text %}<p class="px-stock__text">{{ stock_text }}</p>{% endif %}
+                            </div>
+                            <a href="{{ product.url }}" class="px-btn px-btn--primary">احصل على العرض</a>
+                        {% endfor %}
+                    {% else %}
+                        <h3 class="px-deal__name">📱 Samsung Galaxy S25+ — 256GB</h3>
+                        <span class="px-deal__saved">وفّر 1,100 ر.س</span>
+                        <div class="px-deal__prices">
+                            <span class="px-deal__price px-num">2,699 ر.س</span>
+                            <span class="px-deal__old px-num">3,799 ر.س</span>
+                        </div>
+                        <div class="px-stock">
+                            <div class="px-stock__bar">
+                                <div class="px-stock__fill" style="width:82%"></div>
+                            </div>
+                            <p class="px-stock__text">نفد 82% من الكمية — تبقّى 13 جهازاً فقط</p>
+                        </div>
+                        <a href="{{ store.url }}products" class="px-btn px-btn--primary">احصل على العرض</a>
+                    {% endif %}
+                </div>
+
+                <div class="px-deal__media">
+                    {% if deal_products is not empty %}
+                        {% for product in deal_products is iterable ? deal_products : [deal_products] %}
+                            <img src="{{ product.thumbnail|default(theme.settings.get('placeholder')) }}"
+                                 alt="{{ product.name }}" loading="lazy">
+                        {% endfor %}
+                    {% else %}
+                        <img src="https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/1de8ab4cc-9508-4a43-874c-7bb73f894f05.png"
+                             alt="Samsung Galaxy S25+" loading="lazy">
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

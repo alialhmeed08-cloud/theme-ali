@@ -1,0 +1,11 @@
+{
+  "name": "theme-phonex",
+  "version": "1.0.0",
+  "description": "PhoneX — قالب متجر جوالات احترافي لسلة",
+  "scripts": {
+    "dev": "salla theme serve",
+    "build": "salla theme build",
+    "publish": "salla theme publish"
+  },
+  "engines": { "node": ">=16" }
+}

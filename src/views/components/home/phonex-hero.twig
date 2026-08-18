@@ -1,0 +1,110 @@
+{# PhoneX — الواجهة الرئيسية (home.phonex-hero) #}
+{% set badge  = component.settings.get('badge') %}
+{% set title  = component.settings.get('title') %}
+{% set desc   = component.settings.get('description') %}
+{% set slides = component.settings.get('slides') %}
+{% set stats  = component.settings.get('stats') %}
+
+<section class="px-hero" id="home">
+    <div class="container px-hero__grid">
+
+        <div class="px-hero__content">
+            {% if badge %}<span class="px-kicker">{{ badge }}</span>{% endif %}
+
+            <h1 class="px-hero__title">
+                {% set parts = (title|default('اكتشف عالم الجوالات الذكية — بتجربة مختلفة'))|split('—', 2) %}
+                {{ parts[0] }}{% if parts[1] is defined %}<span>— {{ parts[1]|trim }}</span>{% endif %}
+            </h1>
+
+            {% if desc %}<p class="px-hero__desc">{{ desc }}</p>{% endif %}
+
+            <div class="px-hero__cta">
+                <a href="{{ store.url }}products" class="px-btn px-btn--primary">
+                    تسوّق الآن <i class="sicon-arrow-left"></i>
+                </a>
+                <a href="#deal" class="px-btn px-btn--ghost">عروض اليوم 🏷️</a>
+            </div>
+
+            <div class="px-hero__stats">
+                {% if stats is not empty %}
+                    {% for stat in stats %}
+                        <div class="px-stat reveal" data-delay="{{ loop.index }}">
+                            <span class="px-stat__val px-num">{{ stat['stats.value'] }}</span>
+                            <span class="px-stat__label">{{ stat['stats.label'] }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="px-stat reveal" data-delay="1">
+                        <span class="px-stat__val px-num">60K+</span>
+                        <span class="px-stat__label">عميل سعيد</span>
+                    </div>
+                    <div class="px-stat reveal" data-delay="2">
+                        <span class="px-stat__val px-num">800+</span>
+                        <span class="px-stat__label">منتج متوفر</span>
+                    </div>
+                    <div class="px-stat reveal" data-delay="3">
+                        <span class="px-stat__val px-num">24h</span>
+                        <span class="px-stat__label">توصيل سريع</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="px-hero__media" data-hero>
+            <div class="px-hero__glow" aria-hidden="true"></div>
+
+            {% if slides is not empty %}
+                {% for slide in slides %}
+                    <div class="px-hero__slide{{ loop.first ? ' is-active' : '' }}">
+                        {% if slide['slides.badge'] %}
+                            <span class="px-hero__badge">{{ slide['slides.badge'] }}</span>
+                        {% endif %}
+                        <a href="{{ slide['slides.url']|default(store.url ~ 'products') }}" aria-label="{{ slide['slides.name'] }}">
+                            <img class="px-hero__img" src="{{ slide['slides.image'] }}" alt="{{ slide['slides.name'] }}">
+                        </a>
+                        {% if slide['slides.chips'] %}
+                            <div class="px-hero__chips">
+                                {% for chip in slide['slides.chips']|split('|') %}
+                                    {% if chip|trim %}<span class="px-chip">{{ chip|trim }}</span>{% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <h3 class="px-hero__name">{{ slide['slides.name'] }}</h3>
+                        <div class="px-hero__price px-num">
+                            {{ slide['slides.price'] }}
+                            {% if slide['slides.old_price'] %}<s>{{ slide['slides.old_price'] }}</s>{% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if slides|length > 1 %}
+                    <div class="px-hero__thumbs">
+                        {% for slide in slides %}
+                            <button type="button" class="px-hero__thumb{{ loop.first ? ' is-active' : '' }}" aria-label="{{ slide['slides.name'] }}">
+                                <img src="{{ slide['slides.image'] }}" alt="">
+                            </button>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            {% else %}
+                <div class="px-hero__slide is-active">
+                    <span class="px-hero__badge">الأكثر طلباً</span>
+                    <a href="{{ store.url }}products" aria-label="iPhone 16 Pro Max">
+                        <img class="px-hero__img"
+                             src="https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/109aba76c-f64e-4a63-8980-53e910fb65c2.png"
+                             alt="iPhone 16 Pro Max">
+                    </a>
+                    <div class="px-hero__chips">
+                        <span class="px-chip">شريحة A18 Pro</span>
+                        <span class="px-chip">كاميرا 48MP</span>
+                        <span class="px-chip">تيتانيوم درجة 5</span>
+                    </div>
+                    <h3 class="px-hero__name">iPhone 16 Pro Max</h3>
+                    <div class="px-hero__price px-num">4,299 ر.س <s>4,599 ر.س</s></div>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</section>

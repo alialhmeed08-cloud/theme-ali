@@ -1,0 +1,92 @@
+{# ############## PhoneX — Master Layout ############## #}
+<!DOCTYPE html>
+<html lang="{{ language.code }}" dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05080f">
+    {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
+
+    {% block head_scripts %}{% endblock %}
+
+    <script data-cfasync="false">
+        window.px_settings = {
+            stickyHeader: {{ theme.settings.get('sticky_header', true) ? 'true' : 'false' }},
+            bottomNav: {{ theme.settings.get('show_bottom_nav', true) ? 'true' : 'false' }},
+            cardZoom: {{ theme.settings.get('product_card_zoom', true) ? 'true' : 'false' }},
+            addToCartToast: {{ theme.settings.get('enable_add_product_toast', true) ? 'true' : 'false' }},
+            rtl: {{ theme.is_rtl ? 'true' : 'false' }}
+        };
+    </script>
+
+    {% hook 'head:start' %}
+    {% hook head %}
+
+    {% block styles %}{% endblock %}
+
+    <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+    {% if theme.font %}
+        <link rel="stylesheet" href="{{ theme.font.url }}"/>
+    {% endif %}
+    <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
+    {% if theme.settings.get('display_font_enabled', true) %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-serif-display@5/index.css"/>
+    {% endif %}
+
+    <style>
+        :root {
+            --font-main: '{% if theme.font %}{{ theme.font.name }}{% else %}Almarai{% endif %}';
+            --color-primary: {{ theme.color.primary }};
+            --color-primary-dark: {{ theme.color.darker(0.15) }};
+            --color-primary-light: {{ theme.color.lighter(0.15) }};
+            --color-primary-reverse: {{ theme.color.reverse_text }};
+
+            --px-bg: #05080f;
+            --px-bg-2: #090d18;
+            --px-surface: #0d1322;
+            --px-card: #101828;
+            --px-border: rgba(255, 255, 255, .08);
+            --px-text: #e8edf7;
+            --px-muted: #8b94a7;
+            --px-radius: 1.1rem;
+            --px-shadow: 0 20px 50px rgba(0, 0, 0, .45);
+        }
+    </style>
+
+    {% hook 'head:end' %}
+</head>
+<body id="app" class="phonex{% hook 'body:classes' %}{{ theme.settings.get('sticky_header', true) ? ' px-sticky-enabled' : '' }}{{ theme.settings.get('show_bottom_nav', true) ? ' px-has-bottom-nav' : '' }}">
+<noscript>
+    لتعمل جميع مزايا المتجر بشكل كامل يرجى تفعيل الجافاسكربت في المتصفح.
+</noscript>
+
+<div class="px-app">
+    {% hook 'body:start' %}
+
+    {% component 'header.header' %}
+
+    <main id="main-content" role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% component 'footer.footer' %}
+
+    {% hook 'body:end' %}
+</div>
+
+{% if theme.settings.get('enable_add_product_toast', true) %}
+    <salla-add-product-toast data-testid="store-add-product-toast"></salla-add-product-toast>
+{% endif %}
+
+<salla-offer-modal data-testid="store-offer-modal"></salla-offer-modal>
+<salla-search data-testid="store-search-modal"></salla-search>
+<salla-login-modal data-testid="store-login-modal"></salla-login-modal>
+{% if store.scope %}
+    <salla-scopes data-testid="store-scopes" selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
+{% endif %}
+
+<script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

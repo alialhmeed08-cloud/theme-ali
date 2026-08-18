@@ -1,0 +1,19 @@
+{# PhoneX — النشرة البريدية (home.phonex-newsletter) #}
+{% set badge       = component.settings.get('badge') %}
+{% set title       = component.settings.get('title') %}
+{% set description = component.settings.get('description') %}
+{% set button      = component.settings.get('button_label') %}
+
+<section class="px-section" id="newsletter">
+    <div class="container">
+        <div class="px-newsletter reveal">
+            <span class="px-kicker">{{ badge|default('خصم 5% على أول طلب') }}</span>
+            <h2 class="px-newsletter__title">{{ title|default('اشترك ليصلك كل جديد') }}</h2>
+            <p class="px-newsletter__desc">{{ description|default('إصدارات، عروض حصرية، وأكواد خصم قبل الجميع.') }}</p>
+            <form class="px-newsletter__form" data-px-newsletter>
+                <input type="email" class="px-newsletter__input" placeholder="بريدك الإلكتروني" aria-label="البريد الإلكتروني" required>
+                <button type="submit" class="px-btn px-btn--primary">{{ button|default('اشترك') }}</button>
+            </form>
+        </div>
+    </div>
+</section>

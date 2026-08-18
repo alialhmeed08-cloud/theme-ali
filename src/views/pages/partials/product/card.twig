@@ -1,0 +1,38 @@
+{# بطاقة منتج — تتطلب متغير product #}
+<div class="px-card reveal" data-brands="{{ product.brand.name|default('')|lower }}">
+
+    <a class="px-card__media" href="{{ product.url }}" aria-label="{{ product.name }}">
+        {% if product.sale_price %}
+            <span class="px-card__flag px-card__flag--sale">خصم</span>
+        {% endif %}
+        <img src="{{ product.thumbnail|default(theme.settings.get('placeholder')) }}"
+             alt="{{ product.name }}" loading="lazy">
+    </a>
+
+    <div class="px-card__body">
+        {% if product.brand is defined and product.brand.name is defined %}
+            <span class="px-card__brand">{{ product.brand.name }}</span>
+        {% endif %}
+
+        <a href="{{ product.url }}">
+            <h3 class="px-card__name">{{ product.name }}</h3>
+        </a>
+
+        {% if product.rating is defined and product.rating %}
+            <div class="px-card__rating">★ {{ product.rating }}</div>
+        {% endif %}
+
+        <div class="px-card__foot">
+            {% if product.sale_price %}
+                <span class="px-card__price px-num">
+                    {{ product.sale_price }}<small>{{ product.price }}</small>
+                </span>
+            {% else %}
+                <span class="px-card__price px-num">{{ product.price }}</span>
+            {% endif %}
+
+            <salla-add-product-button product-id="{{ product.id }}" class="px-card__add"></salla-add-product-button>
+        </div>
+    </div>
+
+</div>

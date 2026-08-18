@@ -1,0 +1,84 @@
+{# PhoneX — صفحة قائمة المنتجات #}
+{% extends "layouts.master" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ 'pages.css' | asset }}">
+{% endblock %}
+
+{% block content %}
+    {% set items = (products is defined and products.items is defined) ? products.items : [] %}
+    {% set pg    = (products is defined and products.pagination is defined) ? products.pagination : null %}
+    {% set page_title = (category is defined and category.name is defined)
+        ? category.name
+        : ((brand is defined and brand.name is defined) ? brand.name : 'جميع المنتجات') %}
+
+    <section class="px-section px-listing">
+        <div class="container">
+
+            {% hook 'product:index.items.start' %}
+
+            <div class="px-listing__head">
+                <salla-breadcrumb data-testid="store-breadcrumb"></salla-breadcrumb>
+                <div class="px-listing__title-row">
+                    <h1 class="px-section__title">{{ page_title }}</h1>
+                    {% if pg is not null and pg.total is defined %}
+                        <span class="px-listing__count">{{ pg.total }} منتج</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="px-listing__layout">
+
+                <aside class="px-listing__filters">
+                    <div class="px-panel">
+                        <h3 class="px-panel__title"><i class="sicon-filter"></i> تصفية النتائج</h3>
+                        <salla-filters data-testid="store-products-filters"></salla-filters>
+                    </div>
+                </aside>
+
+                <div class="px-listing__main">
+
+                    {% if items is empty %}
+                        <div class="px-empty">
+                            <div class="px-empty__icon">📱</div>
+                            <h2 class="px-empty__title">لا توجد منتجات هنا بعد</h2>
+                            <p class="px-empty__desc">جرّب تغيير الفلاتر أو تصفّح جميع المنتجات</p>
+                            <a href="{{ store.url }}products" class="px-btn px-btn--primary">جميع المنتجات</a>
+                        </div>
+                    {% else %}
+                        <div class="px-products">
+                            {% for product in items %}
+                                {% include 'pages/partials/product/card.twig' %}
+                            {% endfor %}
+                        </div>
+
+                        {% if pg is not null and pg.totalPages is defined and pg.totalPages > 1 %}
+                            {% set current = pg.currentPage|default(1) %}
+                            {% set start = max(1, current - 2) %}
+                            {% set finish = min(pg.totalPages, current + 2) %}
+                            <nav class="px-pagination" aria-label="ترقيم الصفحات">
+                                {% if current > 1 %}
+                                    <a href="?page={{ current - 1 }}" class="px-pagination__item" aria-label="السابق">
+                                        <i class="sicon-arrow-right"></i>
+                                    </a>
+                                {% endif %}
+                                {% for p in start..finish %}
+                                    <a href="?page={{ p }}" class="px-pagination__item{{ p == current ? ' is-active' : '' }}">{{ p }}</a>
+                                {% endfor %}
+                                {% if current < pg.totalPages %}
+                                    <a href="?page={{ current + 1 }}" class="px-pagination__item" aria-label="التالي">
+                                        <i class="sicon-arrow-left"></i>
+                                    </a>
+                                {% endif %}
+                            </nav>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+
+            {% hook 'product:index.items.end' %}
+
+        </div>
+    </section>
+{% endblock %}

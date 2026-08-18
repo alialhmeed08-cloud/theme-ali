@@ -1,0 +1,78 @@
+{# PhoneX — تايلز التصنيفات (home.phonex-categories) #}
+{% set title = component.settings.get('title') %}
+{% set tiles = component.settings.get('tiles') %}
+
+<section class="px-section" id="categories">
+    <div class="container">
+
+        <div class="px-section__head">
+            <div>
+                <span class="px-kicker">التصنيفات</span>
+                <h2 class="px-section__title">{{ title|default('تصفّح حسب الفئة') }}</h2>
+            </div>
+            <a href="{{ store.url }}products" class="px-btn px-btn--ghost px-btn--sm">
+                كل الفئات <i class="sicon-arrow-left"></i>
+            </a>
+        </div>
+
+        <div class="px-cats">
+            {% if tiles is not empty %}
+                {% for tile in tiles %}
+                    <a href="{{ tile['tiles.url']|default(store.url ~ 'products') }}"
+                       class="px-cat reveal" data-delay="{{ loop.index }}"
+                       style="--px-cat-img:url('{{ tile['tiles.image'] }}')">
+                        <span class="px-cat__num px-num">{{ loop.index < 10 ? '0' ~ loop.index : loop.index }}</span>
+                        <div class="px-cat__body">
+                            {% if tile['tiles.tag'] %}<span class="px-cat__tag">{{ tile['tiles.tag'] }}</span>{% endif %}
+                            <h3 class="px-cat__title">{{ tile['tiles.title'] }}</h3>
+                            {% if tile['tiles.description'] %}<p class="px-cat__desc">{{ tile['tiles.description'] }}</p>{% endif %}
+                            <span class="px-cat__link">تسوّق الآن <i class="sicon-arrow-left"></i></span>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <a href="{{ store.url }}products" class="px-cat reveal" data-delay="1"
+                   style="--px-cat-img:url('https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/109aba76c-f64e-4a63-8980-53e910fb65c2.png')">
+                    <span class="px-cat__num px-num">01</span>
+                    <div class="px-cat__body">
+                        <span class="px-cat__tag">FLAGSHIP</span>
+                        <h3 class="px-cat__title">أجهزة الفئة العليا</h3>
+                        <p class="px-cat__desc">أقوى الأجهزة والأكثر مبيعاً — iPhone و Samsung Galaxy و Google Pixel وأكثر</p>
+                        <span class="px-cat__link">تسوّق الفئة العليا <i class="sicon-arrow-left"></i></span>
+                    </div>
+                </a>
+                <a href="{{ store.url }}products" class="px-cat reveal" data-delay="2"
+                   style="--px-cat-img:url('https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/1c6ff0a22-2cba-46a6-9651-7ef30d150b59.png')">
+                    <span class="px-cat__num px-num">02</span>
+                    <div class="px-cat__body">
+                        <span class="px-cat__tag">MID-RANGE</span>
+                        <h3 class="px-cat__title">الفئة المتوسطة</h3>
+                        <p class="px-cat__desc">أداء قوي بسعر يناسب الجميع — أفضل خيار لهذا العام</p>
+                        <span class="px-cat__link">تسوّق <i class="sicon-arrow-left"></i></span>
+                    </div>
+                </a>
+                <a href="{{ store.url }}products" class="px-cat reveal" data-delay="3"
+                   style="--px-cat-img:url('https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/1dd0d7f52-4349-4cfd-9187-7487d26a8c8b.png')">
+                    <span class="px-cat__num px-num">03</span>
+                    <div class="px-cat__body">
+                        <span class="px-cat__tag">ACCESSORIES</span>
+                        <h3 class="px-cat__title">الإكسسوارات</h3>
+                        <p class="px-cat__desc">سماعات، كفرات، شواحن، ساعات ذكية وأكثر من أفضل الماركات</p>
+                        <span class="px-cat__link">تسوّق <i class="sicon-arrow-left"></i></span>
+                    </div>
+                </a>
+                <a href="{{ store.url }}products" class="px-cat reveal" data-delay="1"
+                   style="--px-cat-img:url('https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/11f8678d2-4379-46cc-ba76-d7bc2fb315db.png')">
+                    <span class="px-cat__num px-num">04</span>
+                    <div class="px-cat__body">
+                        <span class="px-cat__tag">RENEWED</span>
+                        <h3 class="px-cat__title">أجهزة مجددة</h3>
+                        <p class="px-cat__desc">مجدد بشكل احترافي مع ضمان كامل — وفّر أكثر وامتلك أفضل</p>
+                        <span class="px-cat__link">تسوّق <i class="sicon-arrow-left"></i></span>
+                    </div>
+                </a>
+            {% endif %}
+        </div>
+
+    </div>
+</section>

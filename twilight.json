@@ -16,7 +16,18 @@
         "breadcrumb",
         "unite-cards-height",
         "menu-images",
-        "filters"
+        "filters",
+        "component-parallax-background",
+        "component-products-slider",
+        "component-random-testimonials",
+        "component-testimonials",
+        "component-square-photos",
+        "component-store-features",
+        "component-photos-slider",
+        "component-fixed-products",
+        "component-fixed-banner",
+        "component-featured-products",
+        "mega-menu"
     ],
     "settings": [
         {

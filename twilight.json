@@ -72,8 +72,7 @@
                 "en": "Hero Section"
             },
             "icon": "sicon-home",
-            "path": "home.phonex-hero",
-            "is_default": true
+            "path": "home.phonex-hero"
         },
         {
             "key": "b8e3a84b-d1aa-4eb1-b972-462dd50346e3",

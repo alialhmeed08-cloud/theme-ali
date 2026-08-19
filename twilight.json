@@ -1,127 +1,127 @@
 {
-    "name": {
-        "ar": "فون إكس",
-        "en": "PhoneX"
+   "name": {
+       "ar":"فون إكس",
+       "en":"PhoneX"
     },
-    "repository": "https://github.com/alialhmeed08-cloud/theme-ali",
-    "author_email": "support@salla.sa",
-    "support_url": "https://salla.com/",
-    "description": {
-        "ar": "قالب فون إكس لمتاجر الجوالات - تصميم داكن احترافي مبني على بنية قالب رائد",
-        "en": "PhoneX theme for mobile stores - dark professional design based on theme-raed"
+   "repository":"https://github.com/alialhmeed08-cloud/theme-ali",
+   "author_email":"support@salla.sa",
+   "support_url":"https://salla.com/",
+   "description": {
+       "ar":"قالب فون إكس لمتاجر الجوالات - تصميم داكن احترافي مبني على بنية قالب رائد",
+       "en":"PhoneX theme for mobile stores - dark professional design based on theme-raed"
     },
-    "features": [
-        "fonts",
-        "color",
-        "breadcrumb",
-        "unite-cards-height",
-        "menu-images",
-        "filters"
+   "features": [
+       "fonts",
+       "color",
+       "breadcrumb",
+       "unite-cards-height",
+       "menu-images",
+       "filters"
     ],
-    "settings": [
+   "settings": [
         {
-            "type": "boolean",
-            "icon": "sicon-moon",
-            "label": "الوضع الداكن افتراضياً",
-            "description": null,
-            "id": "phonenx_dark_mode_default",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
+           "type":"boolean",
+           "icon":"sicon-moon",
+           "label":"الوضع الداكن افتراضياً",
+           "description": null,
+           "id":"phonenx_dark_mode_default",
+           "format":"switch",
+           "required": false,
+           "value": true,
+           "selected": true
         },
         {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تثبيت القائمة الرئيسية أعلى الصفحة عند التمرير",
-            "description": null,
-            "id": "header_is_sticky",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
+           "type":"boolean",
+           "icon":"sicon-toggle-off",
+           "label":"تثبيت القائمة الرئيسية أعلى الصفحة عند التمرير",
+           "description": null,
+           "id":"header_is_sticky",
+           "format":"switch",
+           "required": false,
+           "value": true,
+           "selected": true
         }
     ],
-    "components": [
+   "components": [
         {
-            "key": "3f2a1b4c-5d6e-4f70-8123-456789abcdef",
-            "title": {
-                "ar": "الواجهة الرئيسية",
-                "en": "Hero Section"
+           "key":"3f2a1b4c-5d6e-4f70-8123-456789abcdef",
+           "title": {
+               "ar":"الواجهة الرئيسية",
+               "en":"Hero Section"
             },
-            "icon": "sicon-home",
-            "path": "home.phonex-hero",
-            "is_default": true
+           "icon":"sicon-home",
+           "path":"home.phonex-hero",
+           "is_default": true
         },
         {
-            "key": "4a3b2c1d-6e5f-4071-9234-56789abcdef0",
-            "title": {
-                "ar": "التصنيفات",
-                "en": "Categories"
+           "key":"4a3b2c1d-6e5f-4071-9234-56789abcdef0",
+           "title": {
+               "ar":"التصنيفات",
+               "en":"Categories"
             },
-            "icon": "sicon-grid",
-            "path": "home.phonex-categories",
-            "is_default": true
+           "icon":"sicon-grid",
+           "path":"home.phonex-categories",
+           "is_default": true
         },
         {
-            "key": "5b4c3d2e-7f60-4182-a345-6789abcdef01",
-            "title": {
-                "ar": "أجهزة مميزة",
-                "en": "Featured Products"
+           "key":"5b4c3d2e-7f60-4182-a345-6789abcdef01",
+           "title": {
+               "ar":"أجهزة مميزة",
+               "en":"Featured Products"
             },
-            "icon": "sicon-smartphone",
-            "path": "home.phonex-products",
-            "is_default": true
+           "icon":"sicon-smartphone",
+           "path":"home.phonex-products",
+           "is_default": true
         },
         {
-            "key": "6c5d4e3f-8071-4293-b456-789abcdef012",
-            "title": {
-                "ar": "عرض اليوم",
-                "en": "Deal of the Day"
+           "key":"6c5d4e3f-8071-4293-b456-789abcdef012",
+           "title": {
+               "ar":"عرض اليوم",
+               "en":"Deal of the Day"
             },
-            "icon": "sicon-fire",
-            "path": "home.phonex-deal",
-            "is_default": true
+           "icon":"sicon-fire",
+           "path":"home.phonex-deal",
+           "is_default": true
         },
         {
-            "key": "7d6e5f40-9182-43a4-a567-89abcdef0123",
-            "title": {
-                "ar": "لماذا نحن",
-                "en": "Why Us"
+           "key":"7d6e5f40-9182-43a4-a567-89abcdef0123",
+           "title": {
+               "ar":"لماذا نحن",
+               "en":"Why Us"
             },
-            "icon": "sicon-shield",
-            "path": "home.phonex-trust",
-            "is_default": true
+           "icon":"sicon-shield",
+           "path":"home.phonex-trust",
+           "is_default": true
         },
         {
-            "key": "8e7f6051-a293-44b5-b678-9abcdef01234",
-            "title": {
-                "ar": "آراء العملاء",
-                "en": "Reviews"
+           "key":"8e7f6051-a293-44b5-b678-9abcdef01234",
+           "title": {
+               "ar":"آراء العملاء",
+               "en":"Reviews"
             },
-            "icon": "sicon-star",
-            "path": "home.phonex-reviews",
-            "is_default": true
+           "icon":"sicon-star",
+           "path":"home.phonex-reviews",
+           "is_default": true
         },
         {
-            "key": "9f807162-b3a4-45c6-8789-abcdef012345",
-            "title": {
-                "ar": "النشرة البريدية",
-                "en": "Newsletter"
+           "key":"9f807162-b3a4-45c6-8789-abcdef012345",
+           "title": {
+               "ar":"النشرة البريدية",
+               "en":"Newsletter"
             },
-            "icon": "sicon-mail",
-            "path": "home.phonex-newsletter",
-            "is_default": true
+           "icon":"sicon-mail",
+           "path":"home.phonex-newsletter",
+           "is_default": true
         },
         {
-            "key": "0a918273-c4b5-46d7-989a-bcdef0123456",
-            "title": {
-                "ar": "العلامات التجارية",
-                "en": "Brands"
+           "key":"0a918273-c4b5-46d7-989a-bcdef0123456",
+           "title": {
+               "ar":"العلامات التجارية",
+               "en":"Brands"
             },
-            "icon": "sicon-tag",
-            "path": "home.phonex-brands",
-            "is_default": true
+           "icon":"sicon-tag",
+           "path":"home.phonex-brands",
+           "is_default": true
         }
     ]
 }

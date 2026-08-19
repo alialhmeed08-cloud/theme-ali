@@ -1,9 +1,12 @@
 {% extends "layouts.master" %}
 
 {% block content %}
-    {#
-    | Render home page components in the order configured by the merchant
-    | in Salla dashboard (drag & drop). This is the exact theme-raed pattern.
-    #}
-    {% component home %}
+    {% component 'home.phonex-hero' %}
+    {% component 'home.phonex-categories' %}
+    {% component 'home.phonex-products' %}
+    {% component 'home.phonex-deal' %}
+    {% component 'home.phonex-trust' %}
+    {% component 'home.phonex-reviews' %}
+    {% component 'home.phonex-newsletter' %}
+    {% component 'home.phonex-brands' %}
 {% endblock %}

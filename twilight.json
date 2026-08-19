@@ -1,31 +1,93 @@
 {
-  "name": { "ar": "فون إكس", "en": "PhoneX" },
-  "repository": "https://github.com/alialhmeed08-cloud/theme-ali",
-  "author_email": "support@salla.sa",
+  "name": {
+    "ar": "فون إكس",
+    "en": "PhoneX"
+  },
   "features": [
     "fonts",
     "color",
     "breadcrumb",
-    "unite-cards-height",
     "menu-images",
     "filters"
   ],
   "settings": [
-    { "type": "boolean", "icon": "sicon-moon", "label": "الوضع الداكن افتراضياً", "id": "phonenx_dark_mode_default", "format": "switch", "value": true, "selected": true },
-    { "type": "boolean", "icon": "sicon-toggle-off", "label": "إظهار شريط التقدم", "id": "phonenx_progress_bar", "format": "switch", "value": true, "selected": true },
-    { "type": "boolean", "icon": "sicon-image", "label": "إظهار طبقة الضجيج", "id": "phonenx_noise_overlay", "format": "switch", "value": true, "selected": true },
-    { "type": "boolean", "icon": "sicon-clock", "label": "تفعيل عدّاد عرض اليوم", "id": "phonenx_deal_countdown", "format": "switch", "value": true, "selected": true },
-    { "type": "boolean", "icon": "sicon-pin", "label": "تثبيت الهيدر عند التمرير", "id": "header_is_sticky", "format": "switch", "value": true, "selected": true }
+    {
+      "type": "boolean",
+      "id": "phonenx_dark_mode_default",
+      "label": "الوضع الداكن افتراضياً",
+      "format": "switch",
+      "value": true
+    },
+    {
+      "type": "boolean",
+      "id": "phonenx_progress_bar",
+      "label": "إظهار شريط التقدم",
+      "format": "switch",
+      "value": true
+    },
+    {
+      "type": "boolean",
+      "id": "phonenx_noise_overlay",
+      "label": "إظهار طبقة الضجيج",
+      "format": "switch",
+      "value": true
+    },
+    {
+      "type": "boolean",
+      "id": "header_is_sticky",
+      "label": "تثبيت الهيدر",
+      "format": "switch",
+      "value": true
+    }
   ],
   "component": [
-    { "id": "hero", "title": { "ar": "الواجهة الرئيسية", "en": "Hero Section" }, "path": "components/home/phonex-hero.twig" },
-    { "id": "categories", "title": { "ar": "التصنيفات", "en": "Categories" }, "path": "components/home/phonex-categories.twig" },
-    { "id": "products", "title": { "ar": "أجهزة مميزة", "en": "Featured Products" }, "path": "components/home/phonex-products.twig" },
-    { "id": "deal", "title": { "ar": "عرض اليوم", "en": "Deal of the Day" }, "path": "components/home/phonex-deal.twig" },
-    { "id": "trust", "title": { "ar": "لماذا نحن", "en": "Why Us" }, "path": "components/home/phonex-trust.twig" },
-    { "id": "reviews", "title": { "ar": "آراء العملاء", "en": "Reviews" }, "path": "components/home/phonex-reviews.twig" },
-    { "id": "newsletter", "title": { "ar": "النشرة البريدية", "en": "Newsletter" }, "path": "components/home/phonex-newsletter.twig" },
-    { "id": "brands", "title": { "ar": "العلامات التجارية", "en": "Brands" }, "path": "components/home/phonex-brands.twig" },
-    { "id": "mobile-nav", "title": { "ar": "التنقل السفلي", "en": "Mobile Nav" }, "path": "components/home/phonenx-mobile-nav.twig" }
+    {
+      "key": "hero",
+      "title": { "ar": "الواجهة الرئيسية", "en": "Hero" },
+      "path": "components/home/phonex-hero.twig",
+      "icon": "sicon-home"
+    },
+    {
+      "key": "categories",
+      "title": { "ar": "التصنيفات", "en": "Categories" },
+      "path": "components/home/phonex-categories.twig",
+      "icon": "sicon-grid"
+    },
+    {
+      "key": "products",
+      "title": { "ar": "أجهزة مميزة", "en": "Products" },
+      "path": "components/home/phonex-products.twig",
+      "icon": "sicon-smartphone"
+    },
+    {
+      "key": "deal",
+      "title": { "ar": "عرض اليوم", "en": "Deal" },
+      "path": "components/home/phonex-deal.twig",
+      "icon": "sicon-fire"
+    },
+    {
+      "key": "trust",
+      "title": { "ar": "لماذا نحن", "en": "Trust" },
+      "path": "components/home/phonex-trust.twig",
+      "icon": "sicon-shield"
+    },
+    {
+      "key": "reviews",
+      "title": { "ar": "آراء العملاء", "en": "Reviews" },
+      "path": "components/home/phonex-reviews.twig",
+      "icon": "sicon-star"
+    },
+    {
+      "key": "newsletter",
+      "title": { "ar": "النشرة البريدية", "en": "Newsletter" },
+      "path": "components/home/phonex-newsletter.twig",
+      "icon": "sicon-mail"
+    },
+    {
+      "key": "brands",
+      "title": { "ar": "العلامات التجارية", "en": "Brands" },
+      "path": "components/home/phonex-brands.twig",
+      "icon": "sicon-tag"
+    }
   ]
 }

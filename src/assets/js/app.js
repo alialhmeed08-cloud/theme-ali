@@ -177,3 +177,20 @@
         if (href === path || (path === '' && href === '')) item.classList.add('is-active');
     });
 })();
+
+
+/**
+ * PhoneX — Global App Entry
+ * theme-raed app.js pattern: runs on ALL pages.
+ * Theme toggle + progress bar must work globally (not just home).
+ */
+import { initThemeToggle } from "./partials/phonenx-theme-toggle";
+import { initScrollEffects } from "./partials/phonenx-scroll";
+
+// theme-raed global init (keeps original global behaviors)
+// — the original app.js imports/helpers remain unchanged —
+
+document.addEventListener('DOMContentLoaded', () => {
+    initThemeToggle(document);
+    initScrollEffects(document);
+});

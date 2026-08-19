@@ -1,92 +1,80 @@
-{# ############## PhoneX — Master Layout ############## #}
-<!DOCTYPE html>
-<html lang="{{ language.code }}" dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+{# ############## Shared Variables in all views ################
+| Variable                                           | Type     | Description
+|----------------------------------------------------|----------|------------------------------------
+| store                                              | Store    |
+| store.id                                           | int      |
+| store.name                                         | string   |
+| store.username                                     | string   |
+| store.description                                  | string   |
+| store.slogan                                       | ?string  | * if feature in twilight.json
+| store.logo                                         | string   |
+| store.url                                          | string   |
+| store.api                                          | string   | the api url for current store
+| store.icon                                         | string   | *fav icon url
+| store.contacts                                     | object   | [mobile, phone, email, whatsapp, telegram]
+| store.social                                       | object   | [instagram, snapchat, twitter, youtube, facebook, ...]
+| store.settings                                     | object   |
+| cart                                               | object   |
+| cart.items_count                                   | int      |
+| cart.total                                         | string   | Formatted total ex: "١٠٠ ر.س"
+| user                                               | ?User    | null if guest
+| page                                               | object   | current page info
+| theme                                              | object   | theme settings access
+#}
+<!doctype html>
+<html lang="{{ store.settings.language|default('ar') }}"
+      dir="{{ store.settings.direction|default('rtl') }}"
+      class="{% if theme.settings.get('phonenx_dark_mode_default') %}dark{% endif %}">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#05080f">
-    {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
-
-    {% block head_scripts %}{% endblock %}
-
-    <script data-cfasync="false">
-        window.px_settings = {
-            stickyHeader: {{ theme.settings.get('sticky_header', true) ? 'true' : 'false' }},
-            bottomNav: {{ theme.settings.get('show_bottom_nav', true) ? 'true' : 'false' }},
-            cardZoom: {{ theme.settings.get('product_card_zoom', true) ? 'true' : 'false' }},
-            addToCartToast: {{ theme.settings.get('enable_add_product_toast', true) ? 'true' : 'false' }},
-            rtl: {{ theme.is_rtl ? 'true' : 'false' }}
-        };
-    </script>
-
+    <meta charset="utf-8">
     {% hook 'head:start' %}
-    {% hook head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#050507">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
 
-    {% block styles %}{% endblock %}
+    <title>{{ page.title|default(store.name) }}</title>
 
-    <link rel="stylesheet" href="{{ 'app.css' | asset }}">
-    {% if theme.font %}
-        <link rel="stylesheet" href="{{ theme.font.url }}"/>
-    {% endif %}
-    <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
-    {% if theme.settings.get('display_font_enabled', true) %}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/dm-serif-display@5/index.css"/>
-    {% endif %}
-
-    <style>
-        :root {
-            --font-main: '{% if theme.font %}{{ theme.font.name }}{% else %}Almarai{% endif %}';
-            --color-primary: {{ theme.color.primary }};
-            --color-primary-dark: {{ theme.color.darker(0.15) }};
-            --color-primary-light: {{ theme.color.lighter(0.15) }};
-            --color-primary-reverse: {{ theme.color.reverse_text }};
-
-            --px-bg: #05080f;
-            --px-bg-2: #090d18;
-            --px-surface: #0d1322;
-            --px-card: #101828;
-            --px-border: rgba(255, 255, 255, .08);
-            --px-text: #e8edf7;
-            --px-muted: #8b94a7;
-            --px-radius: 1.1rem;
-            --px-shadow: 0 20px 50px rgba(0, 0, 0, .45);
-        }
-    </style>
+    {# PhoneX — preconnect for CDN fonts #}
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
     {% hook 'head:end' %}
 </head>
-<body id="app" class="phonex{% hook 'body:classes' %}{{ theme.settings.get('sticky_header', true) ? ' px-sticky-enabled' : '' }}{{ theme.settings.get('show_bottom_nav', true) ? ' px-has-bottom-nav' : '' }}">
-<noscript>
-    لتعمل جميع مزايا المتجر بشكل كامل يرجى تفعيل الجافاسكربت في المتصفح.
-</noscript>
 
-<div class="px-app">
+<body class="phonenx-body {% if is_page('index') %}page-home{% endif %}">
     {% hook 'body:start' %}
 
+    {# ===== PhoneX signature layers ===== #}
+    {% if theme.settings.get('phonenx_progress_bar') %}
+        <div class="progress" id="phonenx-progress" aria-hidden="true"></div>
+    {% endif %}
+
+    {% if theme.settings.get('phonenx_noise_overlay') %}
+        <div class="noise" aria-hidden="true"></div>
+    {% endif %}
+
+    {# ===== Store Header (theme-raed component) ===== #}
     {% component 'header.header' %}
 
-    <main id="main-content" role="main">
+    {# ===== Page Content ===== #}
+    <main id="main-content" class="phonenx-main">
         {% block content %}{% endblock %}
     </main>
 
+    {# ===== Store Footer (theme-raed component) ===== #}
     {% component 'footer.footer' %}
 
+    {# ===== PhoneX Mobile Bottom Nav ===== #}
+    {% component 'home.phonenx-mobile-nav' %}
+
+    {# ===== Salla global web components (theme-raed originals — do NOT remove) ===== #}
+    <salla-offer-modal></salla-offer-modal>
+    <salla-search></salla-search>
+    <salla-login-modal></salla-login-modal>
+    <salla-scopes></salla-scopes>
+    <salla-add-product-toast></salla-add-product-toast>
+
     {% hook 'body:end' %}
-</div>
-
-{% if theme.settings.get('enable_add_product_toast', true) %}
-    <salla-add-product-toast data-testid="store-add-product-toast"></salla-add-product-toast>
-{% endif %}
-
-<salla-offer-modal data-testid="store-offer-modal"></salla-offer-modal>
-<salla-search data-testid="store-search-modal"></salla-search>
-<salla-login-modal data-testid="store-login-modal"></salla-login-modal>
-{% if store.scope %}
-    <salla-scopes data-testid="store-scopes" selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
-{% endif %}
-
-<script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
-{% block scripts %}{% endblock %}
 </body>
 </html>

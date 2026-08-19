@@ -1,0 +1,16 @@
+/* ==========================================================================
+   PhoneX — Top Progress Bar (scroll indicator)
+   Extracted verbatim from PhoneX-Responsive.html (.progress)
+   Layer: 02-generic (theme-raed ITCSS)
+   ========================================================================== */
+
+.progress {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: var(--px-ice);
+    z-index: 120;
+    box-shadow: 0 0 12px rgba(0, 180, 204, .7);
+}

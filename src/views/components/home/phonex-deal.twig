@@ -1,81 +1,89 @@
-{# PhoneX — عرض اليوم مع العدّاد التنازلي (home.phonex-deal) #}
-{% set title         = component.settings.get('title') %}
-{% set subtitle      = component.settings.get('subtitle') %}
-{% set deal_products = component.settings.get('product') %}
-{% set ends_at       = component.settings.get('ends_at', '2025-12-31 23:59:59') %}
-{% set saved_text    = component.settings.get('saved_text') %}
-{% set stock_text    = component.settings.get('stock_text') %}
-{% set stock_percent = component.settings.get('stock_percent', 82) %}
-
-<section class="px-section" id="deal">
+{#
+| PhoneX — Deal of the Day (with Countdown)
+| Uses Salla product + theme.settings for deadline
+#}
+<section id="deal" class="phonenx-deal" aria-label="{{ trans('common.elements.deals')|default('عرض اليوم') }}">
     <div class="container">
-        <div class="px-deal reveal">
-            <div class="px-deal__grid">
+        <div class="deal-card">
 
-                <div class="px-deal__content">
-                    <span class="px-kicker">🔥 {{ subtitle|default('عرض محدود الوقت — اليوم الواحد') }}</span>
-                    <h2 class="px-section__title">{{ title|default('لا تفوّت هذا السعر') }}</h2>
-                    <p class="px-section__sub" style="margin-top:.4rem">ينتهي العرض خلال:</p>
+            {# ===== Deal Info ===== #}
+            <div class="deal-info">
+                <div class="deal-badge">
+                    🔥 {{ theme.settings.get('phonenx_deal_badge')|default('عرض محدود الوقت — اليوم الواحد') }}
+                </div>
 
-                    <div class="px-deal__timer" data-countdown="{{ ends_at }}">
-                        <div class="px-count">
-                            <span class="px-count__val px-num" data-cd-h>00</span>
-                            <span class="px-count__label">ساعة</span>
+                <h2 class="deal-title serif">
+                    {{ theme.settings.get('phonenx_deal_title')|default('لا تفوّت هذا السعر') }}
+                </h2>
+
+                <p class="deal-subtitle">
+                    {{ theme.settings.get('phonenx_deal_subtitle')|default('ينتهي العرض خلال:') }}
+                </p>
+
+                {# ===== Countdown Timer ===== #}
+                {% if theme.settings.get('phonenx_deal_countdown') %}
+                    <div class="deal-countdown"
+                         id="phonenx-countdown"
+                         data-deadline="{{ theme.settings.get('phonenx_deal_deadline')|default('+1 day'|date('Y-m-d H:i:s')) }}">
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="cd-hours">00</span>
+                            <span class="countdown-label">{{ trans('common.time.hours')|default('ساعة') }}</span>
                         </div>
-                        <div class="px-count">
-                            <span class="px-count__val px-num" data-cd-m>00</span>
-                            <span class="px-count__label">دقيقة</span>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="cd-minutes">00</span>
+                            <span class="countdown-label">{{ trans('common.time.minutes')|default('دقيقة') }}</span>
                         </div>
-                        <div class="px-count">
-                            <span class="px-count__val px-num" data-cd-s>00</span>
-                            <span class="px-count__label">ثانية</span>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="cd-seconds">00</span>
+                            <span class="countdown-label">{{ trans('common.time.seconds')|default('ثانية') }}</span>
                         </div>
                     </div>
+                {% endif %}
 
-                    {% if deal_products is not empty %}
-                        {% for product in deal_products is iterable ? deal_products : [deal_products] %}
-                            <h3 class="px-deal__name">📱 {{ product.name }}</h3>
-                            {% if saved_text %}<span class="px-deal__saved">{{ saved_text }}</span>{% endif %}
-                            <div class="px-deal__prices">
-                                <span class="px-deal__price px-num">{{ product.price }}</span>
-                            </div>
-                            <div class="px-stock">
-                                <div class="px-stock__bar">
-                                    <div class="px-stock__fill" style="width:{{ stock_percent }}%"></div>
+                {# ===== Deal Product Info ===== #}
+                {% if deal_product is defined and deal_product %}
+                    <div class="deal-product-info">
+                        <span class="deal-product-name">{{ deal_product.name }}</span>
+                        {% if deal_product.sale_percentage %}
+                            <span class="deal-save-badge">
+                                {{ trans('common.elements.save')|default('وفّر') }} {{ deal_product.save_amount|money }}
+                            </span>
+                        {% endif %}
+                        <div class="deal-prices">
+                            <span class="deal-price">{{ deal_product.price|money }}</span>
+                            {% if deal_product.has_sale %}
+                                <span class="deal-old-price">{{ deal_product.regular_price|money }}</span>
+                            {% endif %}
+                        </div>
+
+                        {# Stock progress bar #}
+                        {% if deal_product.stock_percentage is defined %}
+                            <div class="deal-stock">
+                                <div class="stock-bar">
+                                    <div class="stock-fill" style="width: {{ deal_product.stock_percentage }}%"></div>
                                 </div>
-                                {% if stock_text %}<p class="px-stock__text">{{ stock_text }}</p>{% endif %}
+                                <span class="stock-text">
+                                    {{ trans('common.elements.sold')|default('نفد') }} {{ deal_product.stock_percentage }}%
+                                </span>
                             </div>
-                            <a href="{{ product.url }}" class="px-btn px-btn--primary">احصل على العرض</a>
-                        {% endfor %}
-                    {% else %}
-                        <h3 class="px-deal__name">📱 Samsung Galaxy S25+ — 256GB</h3>
-                        <span class="px-deal__saved">وفّر 1,100 ر.س</span>
-                        <div class="px-deal__prices">
-                            <span class="px-deal__price px-num">2,699 ر.س</span>
-                            <span class="px-deal__old px-num">3,799 ر.س</span>
-                        </div>
-                        <div class="px-stock">
-                            <div class="px-stock__bar">
-                                <div class="px-stock__fill" style="width:82%"></div>
-                            </div>
-                            <p class="px-stock__text">نفد 82% من الكمية — تبقّى 13 جهازاً فقط</p>
-                        </div>
-                        <a href="{{ store.url }}products" class="px-btn px-btn--primary">احصل على العرض</a>
-                    {% endif %}
-                </div>
+                        {% endif %}
 
-                <div class="px-deal__media">
-                    {% if deal_products is not empty %}
-                        {% for product in deal_products is iterable ? deal_products : [deal_products] %}
-                            <img src="{{ product.thumbnail|default(theme.settings.get('placeholder')) }}"
-                                 alt="{{ product.name }}" loading="lazy">
-                        {% endfor %}
-                    {% else %}
-                        <img src="https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/1de8ab4cc-9508-4a43-874c-7bb73f894f05.png"
-                             alt="Samsung Galaxy S25+" loading="lazy">
-                    {% endif %}
-                </div>
+                        <a href="{{ deal_product.url }}" class="btn-primary charge deal-cta">
+                            {{ trans('common.elements.get_deal')|default('احصل على العرض') }}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
 
+            {# ===== Deal Image ===== #}
+            <div class="deal-visual">
+                {% if deal_product is defined and deal_product and deal_product.image %}
+                    <img src="{{ deal_product.image|cdn(600, 600) }}" alt="{{ deal_product.name }}" loading="lazy">
+                {% elseif theme.settings.get('phonenx_deal_image') %}
+                    <img src="{{ theme.settings.get('phonenx_deal_image') }}" alt="{{ theme.settings.get('phonenx_deal_title') }}" loading="lazy">
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,24 +1,25 @@
-{# ============ PhoneX Header ============ #}
-<header data-testid="store-header" class="px-header">
-    <nav class="px-nav" aria-label="التنقل الرئيسي">
-        <div class="container px-nav__inner">
+{#
+| Variable         | Type    | Description
+|------------------|---------|---------------------------------
+| cart             | object  |
+| cart.items_count | int     |
+| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"
+#}
+{% set important_links = theme.settings.get('important_links') %}
 
-            <button type="button" class="px-burger" data-px-burger aria-label="فتح القائمة" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+<header data-testid="store-header" class="store-header nav" id="phonenx-nav">
+    <div class="container">
+        <div class="nav-inner">
 
-            <a data-testid="store-header-logo" class="px-logo" href="{{ store.url }}" aria-label="{{ store.name }}">
+            {# ===== Brand / Logo (theme-raed pattern) ===== #}
+            <a data-testid="store-header-logo" class="navbar-brand" href="{{ store.url }}" aria-label="{{ store.name }}">
                 {% if store.logo %}
-                    <img fetchpriority="high" src="{{ store.logo|cdn(140) }}" alt="{{ store.name }}">
+                    <img fetchpriority="high"
+                         loading="eager"
+                         src="{{ store.logo|cdn(175) }}"
+                         alt="{{ store.name }} logo">
                 {% else %}
-                    <span class="px-logo__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
-                            <rect x="6" y="2" width="12" height="20" rx="3" stroke="currentColor" stroke-width="1.8"/>
-                            <path d="M10 5.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                            <circle cx="12" cy="18" r="1.2" fill="currentColor"/>
-                        </svg>
-                    </span>
-                    <span class="px-logo__text">Phone<b>X</b></span>
+                    <span class="brand-text">{{ store.name }}</span>
                 {% endif %}
                 {% if is_page('index') %}
                     <h1 class="sr-only">{{ store.name }}</h1>
@@ -27,67 +28,50 @@
                 {% endif %}
             </a>
 
-            <div class="px-nav__links">
-                <salla-menu data-testid="store-header-menu" source="header"></salla-menu>
-            </div>
+            {# ===== Main Navigation (Salla official menu) ===== #}
+            <nav class="nav-links" aria-label="{{ trans('common.elements.main_menu')|default('القائمة الرئيسية') }}">
+                <salla-menu data-testid="store-header-mainmenu" source="main" inline></salla-menu>
+            </nav>
 
-            <div class="px-nav__actions">
-                <button type="button" class="px-icon-btn" data-px-search-open aria-label="{{ trans('phonex.search') }}">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
-                        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/>
-                    </svg>
+            {# ===== Nav Actions ===== #}
+            <div class="nav-actions">
+
+                {# Search (Salla official) #}
+                <salla-search data-testid="store-header-search" show-trigger class="phonenx-search"></salla-search>
+
+                {# Theme toggle (Dark / Light) #}
+                <button type="button"
+                        class="icon-btn charge phonenx-theme-toggle"
+                        id="phonenx-theme-toggle"
+                        aria-label="{{ trans('common.elements.change_theme')|default('تبديل المظهر') }}">
+                    <i class="sicon-moon theme-icon-dark"></i>
+                    <i class="sicon-sun theme-icon-light"></i>
                 </button>
 
-                <a class="px-icon-btn" href="{{ link('customer.wishlist') }}" aria-label="{{ trans('phonex.wishlist') }}">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round">
-                        <path d="M12 20.3S4 15.2 4 9.6A4.6 4.6 0 0 1 12 6.7a4.6 4.6 0 0 1 8 2.9c0 5.6-8 10.7-8 10.7Z"/>
-                    </svg>
+                {# Language & Currency (Salla official — theme-raed original) #}
+                {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+                    <salla-localization-modal data-testid="store-header-localization" show-trigger class="phonenx-localization"></salla-localization-modal>
+                {% endif %}
+
+                {# User menu (Salla official) #}
+                <salla-user-menu data-testid="store-header-user-menu" class="phonenx-user-menu"></salla-user-menu>
+
+                {# Cart (Salla official) #}
+                <salla-cart-summary data-testid="store-header-cart" class="phonenx-cart"></salla-cart-summary>
+
+                {# Mobile menu trigger (theme-raed mmenu pattern) #}
+                <a data-testid="store-header-mobile-toggle"
+                   class="lg:hidden mburger mburger--collapse phonenx-burger"
+                   href="#mobile-menu"
+                   aria-label="{{ trans('common.elements.open_menu')|default('فتح القائمة') }}">
+                    <i class="sicon-menu text-2xl"></i>
                 </a>
-
-                <salla-user-menu data-testid="store-header-user-menu" avatar-only show-header show-trigger></salla-user-menu>
-
-                <salla-cart-summary data-testid="store-header-cart" class="px-cart">
-                    <i slot="icon" class="header-btn__icon sicon-shopping-bag"></i>
-                </salla-cart-summary>
             </div>
-        </div>
-
-        <div class="px-search-panel" data-px-search-panel hidden>
-            <div class="container">
-                <salla-search data-testid="store-header-search" inline oval height="44"></salla-search>
-            </div>
-        </div>
-    </nav>
-
-    <div class="px-drawer" data-px-drawer aria-hidden="true">
-        <div class="px-drawer__head">
-            <span class="px-logo__text">Phone<b>X</b></span>
-            <button type="button" class="px-icon-btn" data-px-drawer-close aria-label="إغلاق">✕</button>
-        </div>
-        <div class="px-drawer__menu">
-            <salla-menu source="header"></salla-menu>
-        </div>
-        <div class="px-drawer__foot">
-            <salla-contacts data-testid="store-header-contacts" is-header></salla-contacts>
         </div>
     </div>
-    <div class="px-overlay" data-px-overlay hidden></div>
 
-    {% if theme.settings.get('show_bottom_nav', true) %}
-    <nav class="px-bottom-nav" aria-label="تنقل الجوال">
-        <a href="{{ store.url }}" class="px-bottom-nav__item">
-            <i class="sicon-home"></i><span>{{ trans('phonex.home') }}</span>
-        </a>
-        <a href="{{ store.url }}products" class="px-bottom-nav__item">
-            <i class="sicon-mobile-touch"></i><span>{{ trans('phonex.devices') }}</span>
-        </a>
-        <a href="{{ store.url }}offers" class="px-bottom-nav__item">
-            <i class="sicon-fire"></i><span>{{ trans('phonex.offers') }}</span>
-        </a>
-        <button type="button" class="px-bottom-nav__item" data-px-search-open aria-label="{{ trans('phonex.search') }}">
-            <i class="sicon-search"></i><span>{{ trans('phonex.search') }}</span>
-        </button>
-        <salla-cart-summary class="px-bottom-nav__cart" data-testid="store-bottomnav-cart"></salla-cart-summary>
+    {# ===== Mobile Drawer Menu (theme-raed mmenu-light) ===== #}
+    <nav id="mobile-menu" class="hidden" aria-label="{{ trans('common.elements.mobile_menu')|default('قائمة الجوال') }}">
+        <salla-menu source="main"></salla-menu>
     </nav>
-    {% endif %}
 </header>

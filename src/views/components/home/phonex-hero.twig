@@ -1,110 +1,79 @@
-{# PhoneX — الواجهة الرئيسية (home.phonex-hero) #}
-{% set badge  = component.settings.get('badge') %}
-{% set title  = component.settings.get('title') %}
-{% set desc   = component.settings.get('description') %}
-{% set slides = component.settings.get('slides') %}
-{% set stats  = component.settings.get('stats') %}
+{#
+| PhoneX — Hero Section
+| Uses store.name, store.description, store.settings + theme.settings for customization
+#}
+<section id="home" class="phonenx-hero" aria-label="{{ store.name }}">
+    <div class="container">
+        <div class="hero-grid">
 
-<section class="px-hero" id="home">
-    <div class="container px-hero__grid">
-
-        <div class="px-hero__content">
-            {% if badge %}<span class="px-kicker">{{ badge }}</span>{% endif %}
-
-            <h1 class="px-hero__title">
-                {% set parts = (title|default('اكتشف عالم الجوالات الذكية — بتجربة مختلفة'))|split('—', 2) %}
-                {{ parts[0] }}{% if parts[1] is defined %}<span>— {{ parts[1]|trim }}</span>{% endif %}
-            </h1>
-
-            {% if desc %}<p class="px-hero__desc">{{ desc }}</p>{% endif %}
-
-            <div class="px-hero__cta">
-                <a href="{{ store.url }}products" class="px-btn px-btn--primary">
-                    تسوّق الآن <i class="sicon-arrow-left"></i>
-                </a>
-                <a href="#deal" class="px-btn px-btn--ghost">عروض اليوم 🏷️</a>
-            </div>
-
-            <div class="px-hero__stats">
-                {% if stats is not empty %}
-                    {% for stat in stats %}
-                        <div class="px-stat reveal" data-delay="{{ loop.index }}">
-                            <span class="px-stat__val px-num">{{ stat['stats.value'] }}</span>
-                            <span class="px-stat__label">{{ stat['stats.label'] }}</span>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="px-stat reveal" data-delay="1">
-                        <span class="px-stat__val px-num">60K+</span>
-                        <span class="px-stat__label">عميل سعيد</span>
-                    </div>
-                    <div class="px-stat reveal" data-delay="2">
-                        <span class="px-stat__val px-num">800+</span>
-                        <span class="px-stat__label">منتج متوفر</span>
-                    </div>
-                    <div class="px-stat reveal" data-delay="3">
-                        <span class="px-stat__val px-num">24h</span>
-                        <span class="px-stat__label">توصيل سريع</span>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="px-hero__media" data-hero>
-            <div class="px-hero__glow" aria-hidden="true"></div>
-
-            {% if slides is not empty %}
-                {% for slide in slides %}
-                    <div class="px-hero__slide{{ loop.first ? ' is-active' : '' }}">
-                        {% if slide['slides.badge'] %}
-                            <span class="px-hero__badge">{{ slide['slides.badge'] }}</span>
-                        {% endif %}
-                        <a href="{{ slide['slides.url']|default(store.url ~ 'products') }}" aria-label="{{ slide['slides.name'] }}">
-                            <img class="px-hero__img" src="{{ slide['slides.image'] }}" alt="{{ slide['slides.name'] }}">
-                        </a>
-                        {% if slide['slides.chips'] %}
-                            <div class="px-hero__chips">
-                                {% for chip in slide['slides.chips']|split('|') %}
-                                    {% if chip|trim %}<span class="px-chip">{{ chip|trim }}</span>{% endif %}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                        <h3 class="px-hero__name">{{ slide['slides.name'] }}</h3>
-                        <div class="px-hero__price px-num">
-                            {{ slide['slides.price'] }}
-                            {% if slide['slides.old_price'] %}<s>{{ slide['slides.old_price'] }}</s>{% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-
-                {% if slides|length > 1 %}
-                    <div class="px-hero__thumbs">
-                        {% for slide in slides %}
-                            <button type="button" class="px-hero__thumb{{ loop.first ? ' is-active' : '' }}" aria-label="{{ slide['slides.name'] }}">
-                                <img src="{{ slide['slides.image'] }}" alt="">
-                            </button>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
-            {% else %}
-                <div class="px-hero__slide is-active">
-                    <span class="px-hero__badge">الأكثر طلباً</span>
-                    <a href="{{ store.url }}products" aria-label="iPhone 16 Pro Max">
-                        <img class="px-hero__img"
-                             src="https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/109aba76c-f64e-4a63-8980-53e910fb65c2.png"
-                             alt="iPhone 16 Pro Max">
-                    </a>
-                    <div class="px-hero__chips">
-                        <span class="px-chip">شريحة A18 Pro</span>
-                        <span class="px-chip">كاميرا 48MP</span>
-                        <span class="px-chip">تيتانيوم درجة 5</span>
-                    </div>
-                    <h3 class="px-hero__name">iPhone 16 Pro Max</h3>
-                    <div class="px-hero__price px-num">4,299 ر.س <s>4,599 ر.س</s></div>
+            {# ===== Hero Content ===== #}
+            <div class="hero-content">
+                <div class="hero-badge">
+                    {{ theme.settings.get('phonenx_hero_badge')|default(store.name ~ ' — ' ~ 'now.year'|date('Y')) }}
                 </div>
-            {% endif %}
-        </div>
 
+                <h1 class="hero-title">
+                    {{ theme.settings.get('phonenx_hero_title')|default(store.name) }}
+                </h1>
+
+                <p class="hero-desc">
+                    {{ theme.settings.get('phonenx_hero_description')|default(store.description|striptags) }}
+                </p>
+
+                {# ===== CTA Buttons ===== #}
+                <div class="hero-actions">
+                    <a href="{{ link('products') }}" class="btn-primary charge">
+                        {{ theme.settings.get('phonenx_hero_primary_text')|default(trans('common.elements.shop_now')|default('تسوّق الآن')) }}
+                        <i class="sicon-arrow-left rtl:rotate-180"></i>
+                    </a>
+                    <a href="#deal" class="btn-secondary">
+                        {{ theme.settings.get('phonenx_hero_secondary_text')|default('عروض اليوم 🏷️') }}
+                    </a>
+                </div>
+
+                {# ===== Hero Stats ===== #}
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-value">{{ theme.settings.get('phonenx_stat1_value')|default('60K+') }}</span>
+                        <span class="stat-label">{{ theme.settings.get('phonenx_stat1_label')|default('عميل سعيد') }}</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="stat-value">{{ theme.settings.get('phonenx_stat2_value')|default('800+') }}</span>
+                        <span class="stat-label">{{ theme.settings.get('phonenx_stat2_label')|default('منتج متوفر') }}</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="stat-value">{{ theme.settings.get('phonenx_stat3_value')|default('24h') }}</span>
+                        <span class="stat-label">{{ theme.settings.get('phonenx_stat3_label')|default('توصيل سريع') }}</span>
+                    </div>
+                </div>
+            </div>
+
+            {# ===== Hero Image (Featured Product) ===== #}
+            <div class="hero-visual">
+                <div class="hero-image-wrap charge">
+                    <img src="{{ theme.settings.get('phonenx_hero_image')|default('images/placeholder.png'|asset) }}"
+                         alt="{{ theme.settings.get('phonenx_hero_product_name')|default('Featured Product') }}"
+                         loading="eager"
+                         fetchpriority="high">
+                </div>
+
+                {# Floating spec badges (PhoneX signature) #}
+                {% if theme.settings.get('phonenx_hero_spec1') %}
+                    <span class="hero-spec hero-spec-1">{{ theme.settings.get('phonenx_hero_spec1') }}</span>
+                {% endif %}
+                {% if theme.settings.get('phonenx_hero_spec2') %}
+                    <span class="hero-spec hero-spec-2">{{ theme.settings.get('phonenx_hero_spec2') }}</span>
+                {% endif %}
+                {% if theme.settings.get('phonenx_hero_spec3') %}
+                    <span class="hero-spec hero-spec-3">{{ theme.settings.get('phonenx_hero_spec3') }}</span>
+                {% endif %}
+
+                {% if theme.settings.get('phonenx_hero_badge_product') %}
+                    <span class="hero-product-badge">{{ theme.settings.get('phonenx_hero_badge_product')|default('الأكثر طلباً') }}</span>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </section>

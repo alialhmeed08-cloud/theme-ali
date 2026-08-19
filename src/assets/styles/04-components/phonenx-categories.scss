@@ -1,0 +1,83 @@
+/* ==========================================================================
+   PhoneX — Categories Section
+   Layer: 04-components (theme-raed ITCSS)
+   ========================================================================== */
+
+.phonenx-categories {
+    @apply py-20;
+
+    .categories-grid {
+        @apply grid gap-6;
+        grid-template-columns: repeat(4, 1fr);
+
+        @media (max-width: 1023px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 639px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.category-card {
+    @apply relative flex flex-col p-6;
+    background: var(--px-panel);
+    border: 1px solid var(--px-line);
+    border-radius: var(--px-r);
+    transition: transform .4s var(--px-ease), border-color .4s;
+    overflow: hidden;
+
+    &:hover {
+        transform: translateY(-6px);
+        border-color: var(--px-ice);
+
+        .category-cta {
+            color: var(--px-ice);
+            i { transform: translateX(-4px); }
+        }
+    }
+
+    .category-card-top {
+        @apply flex items-center justify-between mb-4;
+
+        .category-number {
+            @apply text-4xl font-bold;
+            color: var(--px-line2);
+            font-family: var(--font-display);
+            -webkit-text-stroke: 1px var(--px-dim);
+        }
+
+        .category-tag {
+            @apply text-xs font-bold px-3 py-1;
+            background: var(--px-ice-soft);
+            color: var(--px-ice);
+            border-radius: 999px;
+            letter-spacing: 1px;
+        }
+    }
+
+    img {
+        @apply w-full h-40 object-cover mb-4;
+        border-radius: 12px;
+    }
+
+    .category-name {
+        @apply text-lg font-bold mb-2;
+        color: var(--px-snow);
+    }
+
+    .category-desc {
+        @apply text-sm leading-relaxed mb-4 flex-1;
+        color: var(--px-mist);
+    }
+
+    .category-cta {
+        @apply inline-flex items-center gap-2 text-sm font-bold;
+        color: var(--px-snow);
+        transition: color .3s;
+
+        i {
+            transition: transform .3s var(--px-ease);
+        }
+    }
+}

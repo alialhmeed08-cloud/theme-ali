@@ -1,78 +1,69 @@
-{# PhoneX — تايلز التصنيفات (home.phonex-categories) #}
-{% set title = component.settings.get('title') %}
-{% set tiles = component.settings.get('tiles') %}
-
-<section class="px-section" id="categories">
+{#
+| PhoneX — Categories Section
+| Uses salla-menu/categories from Salla if available, else theme.settings
+#}
+<section id="categories" class="phonenx-categories" aria-label="{{ trans('common.elements.categories')|default('التصنيفات') }}">
     <div class="container">
 
-        <div class="px-section__head">
+        {# ===== Section Header ===== #}
+        <div class="section-header">
             <div>
-                <span class="px-kicker">التصنيفات</span>
-                <h2 class="px-section__title">{{ title|default('تصفّح حسب الفئة') }}</h2>
+                <span class="section-label">{{ theme.settings.get('phonenx_categories_label')|default('التصنيفات') }}</span>
+                <h2 class="section-title serif">{{ theme.settings.get('phonenx_categories_title')|default('تصفّح حسب الفئة') }}</h2>
             </div>
-            <a href="{{ store.url }}products" class="px-btn px-btn--ghost px-btn--sm">
-                كل الفئات <i class="sicon-arrow-left"></i>
+            <a href="{{ link('categories') }}" class="section-link charge">
+                {{ trans('common.elements.all_categories')|default('كل الفئات') }}
+                <i class="sicon-arrow-left rtl:rotate-180"></i>
             </a>
         </div>
 
-        <div class="px-cats">
-            {% if tiles is not empty %}
-                {% for tile in tiles %}
-                    <a href="{{ tile['tiles.url']|default(store.url ~ 'products') }}"
-                       class="px-cat reveal" data-delay="{{ loop.index }}"
-                       style="--px-cat-img:url('{{ tile['tiles.image'] }}')">
-                        <span class="px-cat__num px-num">{{ loop.index < 10 ? '0' ~ loop.index : loop.index }}</span>
-                        <div class="px-cat__body">
-                            {% if tile['tiles.tag'] %}<span class="px-cat__tag">{{ tile['tiles.tag'] }}</span>{% endif %}
-                            <h3 class="px-cat__title">{{ tile['tiles.title'] }}</h3>
-                            {% if tile['tiles.description'] %}<p class="px-cat__desc">{{ tile['tiles.description'] }}</p>{% endif %}
-                            <span class="px-cat__link">تسوّق الآن <i class="sicon-arrow-left"></i></span>
+        {# ===== Categories Grid ===== #}
+        <div class="categories-grid">
+
+            {% if categories is defined and categories|length > 0 %}
+                {# Dynamic: use Salla categories #}
+                {% for category in categories|slice(0, 4) %}
+                    <a href="{{ category.url }}" class="category-card charge" style="--cat-index: {{ loop.index }}">
+                        <div class="category-card-top">
+                            <span class="category-number">{{ loop.index < 10 ? '0' ~ loop.index : loop.index }}</span>
+                            <span class="category-tag">{{ category.name|upper|slice(0, 12) }}</span>
                         </div>
+                        {% if category.image %}
+                            <img src="{{ category.image|cdn(400, 400) }}" alt="{{ category.name }}" loading="lazy">
+                        {% endif %}
+                        <h3 class="category-name">{{ category.name }}</h3>
+                        <p class="category-desc">{{ category.description|striptags|slice(0, 90) }}</p>
+                        <span class="category-cta">
+                            {{ trans('common.elements.shop_category')|default('تسوّق') }}
+                            <i class="sicon-arrow-left rtl:rotate-180"></i>
+                        </span>
                     </a>
                 {% endfor %}
             {% else %}
-                <a href="{{ store.url }}products" class="px-cat reveal" data-delay="1"
-                   style="--px-cat-img:url('https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/109aba76c-f64e-4a63-8980-53e910fb65c2.png')">
-                    <span class="px-cat__num px-num">01</span>
-                    <div class="px-cat__body">
-                        <span class="px-cat__tag">FLAGSHIP</span>
-                        <h3 class="px-cat__title">أجهزة الفئة العليا</h3>
-                        <p class="px-cat__desc">أقوى الأجهزة والأكثر مبيعاً — iPhone و Samsung Galaxy و Google Pixel وأكثر</p>
-                        <span class="px-cat__link">تسوّق الفئة العليا <i class="sicon-arrow-left"></i></span>
-                    </div>
-                </a>
-                <a href="{{ store.url }}products" class="px-cat reveal" data-delay="2"
-                   style="--px-cat-img:url('https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/1c6ff0a22-2cba-46a6-9651-7ef30d150b59.png')">
-                    <span class="px-cat__num px-num">02</span>
-                    <div class="px-cat__body">
-                        <span class="px-cat__tag">MID-RANGE</span>
-                        <h3 class="px-cat__title">الفئة المتوسطة</h3>
-                        <p class="px-cat__desc">أداء قوي بسعر يناسب الجميع — أفضل خيار لهذا العام</p>
-                        <span class="px-cat__link">تسوّق <i class="sicon-arrow-left"></i></span>
-                    </div>
-                </a>
-                <a href="{{ store.url }}products" class="px-cat reveal" data-delay="3"
-                   style="--px-cat-img:url('https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/1dd0d7f52-4349-4cfd-9187-7487d26a8c8b.png')">
-                    <span class="px-cat__num px-num">03</span>
-                    <div class="px-cat__body">
-                        <span class="px-cat__tag">ACCESSORIES</span>
-                        <h3 class="px-cat__title">الإكسسوارات</h3>
-                        <p class="px-cat__desc">سماعات، كفرات، شواحن، ساعات ذكية وأكثر من أفضل الماركات</p>
-                        <span class="px-cat__link">تسوّق <i class="sicon-arrow-left"></i></span>
-                    </div>
-                </a>
-                <a href="{{ store.url }}products" class="px-cat reveal" data-delay="1"
-                   style="--px-cat-img:url('https://image.qwenlm.ai/public_source/1450c9c6-99b4-42b4-b8ca-08ead5adcaeb/11f8678d2-4379-46cc-ba76-d7bc2fb315db.png')">
-                    <span class="px-cat__num px-num">04</span>
-                    <div class="px-cat__body">
-                        <span class="px-cat__tag">RENEWED</span>
-                        <h3 class="px-cat__title">أجهزة مجددة</h3>
-                        <p class="px-cat__desc">مجدد بشكل احترافي مع ضمان كامل — وفّر أكثر وامتلك أفضل</p>
-                        <span class="px-cat__link">تسوّق <i class="sicon-arrow-left"></i></span>
-                    </div>
-                </a>
+                {# Static: use theme.settings #}
+                {% for i in 1..4 %}
+                    {% set cat_name = theme.settings.get('phonenx_cat' ~ i ~ '_name') %}
+                    {% set cat_desc = theme.settings.get('phonenx_cat' ~ i ~ '_desc') %}
+                    {% set cat_link = theme.settings.get('phonenx_cat' ~ i ~ '_link')|default(link('products')) %}
+                    {% set cat_img = theme.settings.get('phonenx_cat' ~ i ~ '_image') %}
+                    {% if cat_name %}
+                        <a href="{{ cat_link }}" class="category-card charge" style="--cat-index: {{ i }}">
+                            <div class="category-card-top">
+                                <span class="category-number">{{ i < 10 ? '0' ~ i : i }}</span>
+                            </div>
+                            {% if cat_img %}
+                                <img src="{{ cat_img }}" alt="{{ cat_name }}" loading="lazy">
+                            {% endif %}
+                            <h3 class="category-name">{{ cat_name }}</h3>
+                            <p class="category-desc">{{ cat_desc }}</p>
+                            <span class="category-cta">
+                                {{ trans('common.elements.shop_category')|default('تسوّق') }}
+                                <i class="sicon-arrow-left rtl:rotate-180"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         </div>
-
     </div>
 </section>

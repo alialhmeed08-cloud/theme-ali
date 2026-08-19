@@ -1,12 +1,68 @@
 {
-    "phonex.home": "الرئيسية",
-    "phonex.devices": "الأجهزة",
-    "phonex.offers": "العروض",
-    "phonex.search": "بحث",
-    "phonex.wishlist": "المفضلة",
-    "phonex.login": "تسجيل الدخول",
-    "phonex.cart": "السلة",
-    "phonex.footer.store_links": "المتجر",
-    "phonex.footer.contact": "تواصل معنا",
-    "phonex.footer.tax_number": "الرقم الضريبي"
+    "phonenx": {
+        "hero": {
+            "shop_now": "تسوّق الآن",
+            "deal_of_day": "عروض اليوم 🏷️",
+            "happy_customers": "عميل سعيد",
+            "products_available": "منتج متوفر",
+            "fast_delivery": "توصيل سريع"
+        },
+        "categories": {
+            "label": "التصنيفات",
+            "title": "تصفّح حسب الفئة",
+            "all_categories": "كل الفئات",
+            "shop": "تسوّق",
+            "flagship": "أجهزة الفئة العليا",
+            "flagship_desc": "أقوى الأجهزة والأكثر مبيعاً — iPhone و Samsung Galaxy و Google Pixel وأكثر",
+            "midrange": "الفئة المتوسطة",
+            "midrange_desc": "أداء قوي بسعر يناسب الجميع — أفضل خيار لهذا العام",
+            "accessories": "الإكسسوارات",
+            "accessories_desc": "سماعات، كفرات، شواحن، ساعات ذكية وأكثر من أفضل الماركات",
+            "renewed": "أجهزة مجددة",
+            "renewed_desc": "مجدد بشكل احترافي مع ضمان كامل — وفّر أكثر وامتلك أفضل"
+        },
+        "featured": {
+            "label": "أجهزة مميزة",
+            "title": "أكثر المنتجات طلباً",
+            "deal_of_day": "عرض اليوم 🔥",
+            "view_all": "عرض جميع المنتجات",
+            "all": "الكل",
+            "accessories": "إكسسوارات"
+        },
+        "deal": {
+            "badge": "عرض محدود الوقت — اليوم الواحد",
+            "title": "لا تفوّت هذا السعر",
+            "subtitle": "ينتهي العرض خلال:",
+            "hours": "ساعة",
+            "minutes": "دقيقة",
+            "seconds": "ثانية",
+            "save": "وفّر",
+            "get_deal": "احصل على العرض",
+            "sold_out": "نفد"
+        },
+        "features": {
+            "label": "لماذا نحن؟",
+            "title": "تجربة تُصنع بثقة",
+            "delivery": "توصيل خلال 24 ساعة",
+            "delivery_desc": "نوصّل لجميع مناطق المملكة بسرعة قياسية وبكل أمان",
+            "warranty": "ضمان رسمي كامل",
+            "warranty_desc": "جميع أجهزتنا أصلية ومضمونة بضمان رسمي من الشركة",
+            "installment": "تقسيط بدون فوائد",
+            "installment_desc": "قسّم على 12 شهر بدون فوائد مع جميع البطاقات الرئيسية",
+            "exchange": "استبدال مجاني",
+            "exchange_desc": "استبدل جهازك خلال 7 أيام إذا لم تكن راضياً تماماً"
+        },
+        "testimonials": {
+            "label": "آراء العملاء",
+            "title": "ماذا يقولون عنّا",
+            "from": "من",
+            "verified_reviews": "تقييم موثّق"
+        },
+        "newsletter": {
+            "title": "خصم 5% على أول طلب",
+            "desc": "اشترك ليصلك كل جديد — إصدارات، عروض حصرية، وأكواد خصم قبل الجميع.",
+            "subscribe": "اشترك",
+            "email_placeholder": "البريد الإلكتروني"
+        }
+    }
 }

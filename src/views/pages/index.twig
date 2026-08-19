@@ -1,6 +1,9 @@
 {% extends "layouts.master" %}
 
 {% block content %}
-    {# يعرض كل مكونات الصفحة الرئيسية المرتبة من لوحة التحكم #}
+    {#
+    | Render home page components in the order configured by the merchant
+    | in Salla dashboard (drag & drop). This is the exact theme-raed pattern.
+    #}
     {% component home %}
 {% endblock %}

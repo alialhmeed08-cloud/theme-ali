@@ -1,0 +1,65 @@
+/* ==========================================================================
+   PhoneX — Newsletter Section
+   Layer: 04-components (theme-raed ITCSS)
+   ========================================================================== */
+
+.phonenx-newsletter {
+    @apply py-20;
+
+    .newsletter-card {
+        @apply grid items-center gap-8 p-8 lg:p-12;
+        grid-template-columns: 1fr auto;
+        background: var(--px-panel);
+        border: 1px solid var(--px-line);
+        border-radius: var(--px-r);
+
+        @media (max-width: 1023px) {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+    }
+
+    .newsletter-title {
+        @apply text-2xl font-bold mb-2;
+        color: var(--px-snow);
+    }
+
+    .newsletter-desc {
+        @apply text-base;
+        color: var(--px-mist);
+    }
+
+    .newsletter-form {
+        @apply flex items-center gap-3;
+
+        input {
+            @apply px-5 py-3.5 text-base;
+            background: var(--px-panel2);
+            border: 1px solid var(--px-line);
+            border-radius: 12px;
+            color: var(--px-snow);
+            min-width: 280px;
+
+            &::placeholder {
+                color: var(--px-dim);
+            }
+
+            &:focus {
+                outline: none;
+                border-color: var(--px-ice);
+            }
+        }
+
+        button {
+            @apply px-7 py-3.5 text-base font-bold;
+            background: var(--px-ice);
+            color: var(--px-void);
+            border-radius: 12px;
+            transition: transform .3s var(--px-ease);
+
+            &:hover {
+                transform: translateY(-2px);
+            }
+        }
+    }
+}

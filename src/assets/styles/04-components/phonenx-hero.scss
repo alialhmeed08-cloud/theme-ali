@@ -1,0 +1,130 @@
+/* ==========================================================================
+   PhoneX — Hero Section
+   Layer: 04-components (theme-raed ITCSS)
+   ========================================================================== */
+
+.phonenx-hero {
+    @apply pt-32 pb-20;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .hero-grid {
+        @apply grid items-center gap-16;
+        grid-template-columns: 1.1fr .9fr;
+
+        @media (max-width: 1023px) {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+    }
+}
+
+/* ===== Hero Content ===== */
+.hero-content {
+    .hero-badge {
+        @apply inline-flex items-center gap-2 px-4 py-2 mb-6;
+        border: 1px solid var(--px-line2);
+        border-radius: 999px;
+        background: var(--px-ice-soft);
+        color: var(--px-ice);
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .hero-title {
+        @apply text-4xl lg:text-5xl font-extrabold leading-tight mb-6;
+        color: var(--px-snow);
+        font-family: var(--font-main);
+
+        @media (max-width: 639px) {
+            font-size: 32px;
+        }
+    }
+
+    .hero-desc {
+        @apply text-base leading-relaxed mb-8;
+        color: var(--px-mist);
+        max-width: 540px;
+
+        @media (max-width: 1023px) {
+            margin-inline: auto;
+        }
+    }
+}
+
+/* ===== Hero Actions ===== */
+.hero-actions {
+    @apply flex items-center gap-4 flex-wrap mb-10;
+
+    @media (max-width: 1023px) {
+        justify-content: center;
+    }
+}
+
+/* ===== Hero Stats ===== */
+.hero-stats {
+    @apply flex items-center gap-6;
+
+    @media (max-width: 1023px) {
+        justify-content: center;
+    }
+
+    .hero-stat {
+        @apply flex flex-col;
+
+        .stat-value {
+            @apply text-3xl font-extrabold;
+            color: var(--px-ice);
+            font-family: var(--font-display);
+        }
+
+        .stat-label {
+            @apply text-sm;
+            color: var(--px-dim);
+        }
+    }
+
+    .hero-stat-divider {
+        width: 1px;
+        height: 40px;
+        background: var(--px-line2);
+    }
+}
+
+/* ===== Hero Visual ===== */
+.hero-visual {
+    @apply relative;
+
+    .hero-image-wrap {
+        @apply relative rounded-large overflow-hidden;
+        background: var(--px-panel);
+        border: 1px solid var(--px-line);
+        padding: 24px;
+
+        img {
+            @apply w-full h-auto;
+            border-radius: 16px;
+        }
+    }
+
+    .hero-spec {
+        @apply absolute px-3 py-2 text-xs font-bold;
+        background: rgba(13, 13, 18, .88);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--px-line2);
+        border-radius: 10px;
+        color: var(--px-snow);
+
+        &.hero-spec-1 { top: 12%; right: -8px; }
+        &.hero-spec-2 { top: 45%; left: -12px; }
+        &.hero-spec-3 { bottom: 18%; right: -6px; }
+    }
+
+    .hero-product-badge {
+        @apply absolute top-4 right-4 px-3 py-1.5 text-xs font-bold;
+        background: var(--px-gold);
+        color: var(--px-void);
+        border-radius: 8px;
+    }
+}

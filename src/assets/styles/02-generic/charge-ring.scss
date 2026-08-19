@@ -1,0 +1,46 @@
+/* ==========================================================================
+   PhoneX — Charge Ring (signature hover effect)
+   Extracted verbatim from PhoneX-Responsive.html (.charge)
+   Layer: 02-generic (theme-raed ITCSS)
+   ========================================================================== */
+
+@property --sweep {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.charge {
+    position: relative;
+}
+
+.charge::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: conic-gradient(
+        from var(--sweep),
+        transparent 0 70%,
+        rgba(0, 180, 204, .25) 82%,
+        var(--px-ice) 92%,
+        #bff4fc 97%,
+        transparent 100%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.charge:hover::after {
+    opacity: 1;
+    animation: sweep 1.5s linear infinite;
+}
+
+@keyframes sweep {
+    to { --sweep: 360deg; }
+}

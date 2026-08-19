@@ -1,0 +1,39 @@
+/* ==========================================================================
+   PhoneX — Testimonials Section
+   Layer: 04-components (theme-raed ITCSS)
+   ========================================================================== */
+
+.phonenx-testimonials {
+    @apply py-20;
+
+    .testimonials-rating {
+        @apply flex flex-col items-center gap-2 mt-4;
+
+        .rating-value {
+            @apply text-4xl font-extrabold;
+            color: var(--px-ice);
+            font-family: var(--font-display);
+        }
+
+        .rating-stars {
+            @apply flex gap-1;
+            color: var(--px-gold);
+            font-size: 18px;
+        }
+
+        .rating-count {
+            @apply text-sm;
+            color: var(--px-mist);
+        }
+    }
+
+    /* salla-reviews grid */
+    .testimonials-grid {
+        @apply grid gap-6 mt-10;
+        grid-template-columns: repeat(3, 1fr);
+
+        @media (max-width: 1023px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}

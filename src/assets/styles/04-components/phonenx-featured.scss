@@ -1,0 +1,61 @@
+/* ==========================================================================
+   PhoneX — Featured Products with Tabs
+   Layer: 04-components (theme-raed ITCSS)
+   ========================================================================== */
+
+.phonenx-featured {
+    @apply py-20;
+
+    /* ===== Tabs ===== */
+    .featured-tabs {
+        @apply flex items-center gap-2 flex-wrap mb-8;
+
+        .tab-trigger {
+            @apply px-5 py-2.5 text-sm font-bold;
+            border: 1px solid var(--px-line);
+            border-radius: 999px;
+            color: var(--px-mist);
+            background: transparent;
+            transition: all .3s;
+
+            &:hover {
+                border-color: var(--px-ice);
+                color: var(--px-snow);
+            }
+
+            &.is-active {
+                background: var(--px-ice);
+                border-color: var(--px-ice);
+                color: var(--px-void);
+            }
+        }
+    }
+
+    /* ===== Tabs Content (theme-raed home.js classes) ===== */
+    .tabs-wrapper {
+        position: relative;
+
+        > div {
+            transition: opacity .3s, transform .3s var(--px-ease);
+
+            &.inactive {
+                display: none;
+            }
+
+            &.opacity-0 {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            &.opacity-100 {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    /* ===== View All ===== */
+    .featured-view-all {
+        @apply flex justify-center mt-10;
+    }
+}

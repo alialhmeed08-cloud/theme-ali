@@ -1,0 +1,30 @@
+{#
+| PhoneX — Testimonials Section
+| Uses salla-reviews for dynamic reviews from Salla
+#}
+<section id="testimonials" class="phonenx-testimonials" aria-label="{{ trans('common.elements.testimonials')|default('آراء العملاء') }}">
+    <div class="container">
+
+        {# ===== Section Header ===== #}
+        <div class="section-header section-header-center">
+            <span class="section-label">{{ theme.settings.get('phonenx_testimonials_label')|default('آراء العملاء') }}</span>
+            <h2 class="section-title serif">{{ theme.settings.get('phonenx_testimonials_title')|default('ماذا يقولون عنّا') }}</h2>
+
+            {# Store rating summary #}
+            <div class="testimonials-rating">
+                <span class="rating-value">{{ store.settings.rating.average|default('5.0') }}</span>
+                <div class="rating-stars" aria-hidden="true">
+                    {% for i in 1..5 %}
+                        <i class="sicon-star-fill"></i>
+                    {% endfor %}
+                </div>
+                <span class="rating-count">
+                    {{ trans('common.elements.from')|default('من') }} {{ store.settings.rating.count|default('0') }}+ {{ trans('common.elements.verified_reviews')|default('تقييم موثّق') }}
+                </span>
+            </div>
+        </div>
+
+        {# ===== Reviews from Salla ===== #}
+        <salla-reviews data-testid="store-reviews" class="testimonials-grid" limit="3"></salla-reviews>
+    </div>
+</section>

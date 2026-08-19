@@ -72,25 +72,29 @@
             "key": "7d6e5f40-9182-43a4-a567-89abcdef0123",
             "title": { "ar": "لماذا نحن", "en": "Why Us" },
             "icon": "sicon-shield",
-            "path": "home.phonex-trust"
+            "path": "home.phonex-trust",
+            "is_default": true
         },
         {
             "key": "8e7f6051-a293-44b5-b678-9abcdef01234",
             "title": { "ar": "آراء العملاء", "en": "Reviews" },
             "icon": "sicon-star",
-            "path": "home.phonex-reviews"
+            "path": "home.phonex-reviews",
+            "is_default": true
         },
         {
             "key": "9f807162-b3a4-45c6-8789-abcdef012345",
             "title": { "ar": "النشرة البريدية", "en": "Newsletter" },
             "icon": "sicon-mail",
-            "path": "home.phonex-newsletter"
+            "path": "home.phonex-newsletter",
+            "is_default": true
         },
         {
             "key": "0a918273-c4b5-46d7-989a-bcdef0123456",
             "title": { "ar": "العلامات التجارية", "en": "Brands" },
             "icon": "sicon-tag",
-            "path": "home.phonex-brands"
+            "path": "home.phonex-brands",
+            "is_default": true
         }
     ]
 }

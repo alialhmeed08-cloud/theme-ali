@@ -2,7 +2,7 @@
     "phonenx": {
         "hero": {
             "shop_now": "Shop Now",
-            "deal_of_day": "Today's Deals 🏷️",
+            "deal_of_day": "Today's Deals",
             "happy_customers": "Happy Customers",
             "products_available": "Products Available",
             "fast_delivery": "Fast Delivery"
@@ -13,24 +13,23 @@
             "all_categories": "All Categories",
             "shop": "Shop",
             "flagship": "Flagship",
-            "flagship_desc": "The most powerful and best-selling devices — iPhone, Samsung Galaxy, Google Pixel and more",
+            "flagship_desc": "The most powerful and best-selling devices",
             "midrange": "Mid-Range",
-            "midrange_desc": "Powerful performance at an affordable price — the best choice this year",
+            "midrange_desc": "Powerful performance at an affordable price",
             "accessories": "Accessories",
-            "accessories_desc": "Headphones, cases, chargers, smartwatches and more from top brands",
+            "accessories_desc": "Headphones, cases, chargers, smartwatches and more",
             "renewed": "Renewed",
-            "renewed_desc": "Professionally renewed with full warranty — save more and own the best"
+            "renewed_desc": "Professionally renewed with full warranty"
         },
         "featured": {
             "label": "Featured Products",
             "title": "Most Popular Products",
-            "deal_of_day": "Deal of the Day 🔥",
+            "deal_of_day": "Deal of the Day",
             "view_all": "View All Products",
-            "all": "All",
-            "accessories": "Accessories"
+            "all": "All"
         },
         "deal": {
-            "badge": "Limited Time Offer — One Day",
+            "badge": "Limited Time Offer",
             "title": "Don't Miss This Price",
             "subtitle": "Offer ends in:",
             "hours": "Hours",
@@ -44,13 +43,13 @@
             "label": "Why Us?",
             "title": "An Experience Built on Trust",
             "delivery": "24-Hour Delivery",
-            "delivery_desc": "We deliver to all regions of the Kingdom quickly and safely",
+            "delivery_desc": "We deliver to all regions quickly and safely",
             "warranty": "Full Official Warranty",
-            "warranty_desc": "All our devices are original and guaranteed with official warranty",
+            "warranty_desc": "All our devices are original with official warranty",
             "installment": "Interest-Free Installments",
-            "installment_desc": "Split over 12 months with no interest with all major cards",
+            "installment_desc": "Split over 12 months with no interest",
             "exchange": "Free Exchange",
-            "exchange_desc": "Exchange your device within 7 days if you're not completely satisfied"
+            "exchange_desc": "Exchange your device within 7 days"
         },
         "testimonials": {
             "label": "Customer Reviews",
@@ -60,7 +59,7 @@
         },
         "newsletter": {
             "title": "5% Off Your First Order",
-            "desc": "Subscribe to get all the latest — new releases, exclusive offers, and discount codes before everyone.",
+            "desc": "Subscribe to get new releases, exclusive offers, and discount codes.",
             "subscribe": "Subscribe",
             "email_placeholder": "Email address"
         }

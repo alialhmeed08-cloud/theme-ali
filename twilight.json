@@ -1,7 +1,4 @@
 {
-    "name": { "ar": "فونكس", "en": "PhoneX" },
-    "repository": "https://github.com/alialhmeed08-cloud/theme-phonex",
-    "author_email": "support@phonex.store",
     "support_url": "https://phonex.store/support",
     "description": {
         "ar": "قالب احترافي لمتجر جوالات وإكسسوارات — تصميم داكن بمزايا متكاملة",
@@ -27,147 +24,624 @@
         "component-youtube"
     ],
     "settings": [
-        { "type": "string", "id": "placeholder", "format": "hidden", "value": "images/placeholder.png" },
-        { "type": "boolean", "icon": "sicon-toggle-off", "label": "ثبّت الهيدر عند التمرير", "id": "sticky_header", "format": "switch", "required": false, "value": true, "selected": true },
-        { "type": "boolean", "icon": "sicon-toggle-off", "label": "شريط التنقل السفلي", "id": "show_bottom_nav", "format": "switch", "required": false, "value": true, "selected": true },
-        { "type": "boolean", "icon": "sicon-toggle-off", "label": "إشعار إضافة المنتج للسلة", "id": "enable_add_product_toast", "format": "switch", "required": false, "value": true, "selected": true },
-        { "type": "boolean", "icon": "sicon-toggle-off", "label": "إظهار الرقم الضريبي", "id": "show_tax_number", "format": "switch", "required": false, "value": true, "selected": true },
-        { "type": "boolean", "icon": "sicon-toggle-off", "label": "تكبير صور المنتجات", "id": "product_card_zoom", "format": "switch", "required": false, "value": true, "selected": true }
+        {
+            "type": "string",
+            "id": "placeholder",
+            "format": "hidden",
+            "value": "images/placeholder.png"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "ثبّت الهيدر عند التمرير",
+            "id": "sticky_header",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "شريط التنقل السفلي",
+            "id": "show_bottom_nav",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إشعار إضافة المنتج للسلة",
+            "id": "enable_add_product_toast",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار الرقم الضريبي",
+            "id": "show_tax_number",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تكبير صور المنتجات",
+            "id": "product_card_zoom",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        }
     ],
     "components": [
         {
             "key": "a1f0c8d2-3b4e-4f6a-9c1d-0e1f2a3b4c01",
-            "title": { "en": "PhoneX Hero", "ar": "السكشن الرئيسي" },
+            "title": {
+                "en": "PhoneX Hero",
+                "ar": "السكشن الرئيسي"
+            },
             "icon": "sicon-home-wave",
             "path": "home.phonex-hero",
             "is_default": true,
             "fields": [
-                { "type": "string", "icon": "sicon-tag", "label": "نص الشارة", "id": "badge", "format": "text", "multilanguage": true, "value": "أحدث الإصدارات — 2025", "maxLength": 80 },
-                { "type": "string", "icon": "sicon-format-text-alt", "label": "العنوان", "id": "title", "format": "text", "required": true, "multilanguage": true, "value": "اكتشف عالم الجوالات الذكية — بتجربة مختلفة", "maxLength": 120 },
-                { "type": "string", "icon": "sicon-typography", "label": "الوصف", "id": "description", "format": "textarea", "multilanguage": true, "value": "تشكيلة ضخمة من أحدث الأجهزة والإكسسوارات", "maxLength": 300 },
-                { "id": "slides", "type": "collection", "format": "collection", "label": "الأجهزة", "required": true, "minLength": 1, "maxLength": 5, "item_label": "جهاز",
+                {
+                    "type": "string",
+                    "icon": "sicon-tag",
+                    "label": "نص الشارة",
+                    "id": "badge",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "أحدث الإصدارات — 2025",
+                    "maxLength": 80
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "id": "title",
+                    "format": "text",
+                    "required": true,
+                    "multilanguage": true,
+                    "value": "اكتشف عالم الجوالات الذكية — بتجربة مختلفة",
+                    "maxLength": 120
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "الوصف",
+                    "id": "description",
+                    "format": "textarea",
+                    "multilanguage": true,
+                    "value": "تشكيلة ضخمة من أحدث الأجهزة والإكسسوارات",
+                    "maxLength": 300
+                },
+                {
+                    "id": "slides",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الأجهزة",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 5,
+                    "item_label": "جهاز",
                     "fields": [
-                        { "type": "string", "icon": "sicon-image", "label": "الصورة", "id": "slides.image", "format": "image", "required": true },
-                        { "type": "string", "icon": "sicon-format-text-alt", "label": "الاسم", "id": "slides.name", "format": "text", "required": true, "multilanguage": true, "maxLength": 80 },
-                        { "type": "string", "icon": "sicon-tag", "label": "الوسم", "id": "slides.badge", "format": "text", "multilanguage": true, "maxLength": 40 },
-                        { "type": "string", "icon": "sicon-wallet", "label": "السعر", "id": "slides.price", "format": "text", "maxLength": 30 },
-                        { "type": "string", "icon": "sicon-wallet-minus", "label": "السعر القديم", "id": "slides.old_price", "format": "text", "maxLength": 30 },
-                        { "type": "string", "icon": "sicon-list", "label": "المميزات (مفصولة بـ |)", "id": "slides.chips", "format": "text", "maxLength": 200 }
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "label": "الصورة",
+                            "id": "slides.image",
+                            "format": "image",
+                            "required": true
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "الاسم",
+                            "id": "slides.name",
+                            "format": "text",
+                            "required": true,
+                            "multilanguage": true,
+                            "maxLength": 80
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-tag",
+                            "label": "الوسم",
+                            "id": "slides.badge",
+                            "format": "text",
+                            "multilanguage": true,
+                            "maxLength": 40
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-wallet",
+                            "label": "السعر",
+                            "id": "slides.price",
+                            "format": "text",
+                            "maxLength": 30
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-wallet-minus",
+                            "label": "السعر القديم",
+                            "id": "slides.old_price",
+                            "format": "text",
+                            "maxLength": 30
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-list",
+                            "label": "المميزات (مفصولة بـ |)",
+                            "id": "slides.chips",
+                            "format": "text",
+                            "maxLength": 200
+                        }
                     ]
                 },
-                { "id": "stats", "type": "collection", "format": "collection", "label": "الإحصائيات", "minLength": 1, "maxLength": 4, "item_label": "إحصائية",
+                {
+                    "id": "stats",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الإحصائيات",
+                    "minLength": 1,
+                    "maxLength": 4,
+                    "item_label": "إحصائية",
                     "fields": [
-                        { "type": "string", "icon": "sicon-numbered-list", "label": "القيمة", "id": "stats.value", "format": "text", "required": true, "maxLength": 20 },
-                        { "type": "string", "icon": "sicon-format-text-alt", "label": "التسمية", "id": "stats.label", "format": "text", "required": true, "multilanguage": true, "maxLength": 40 }
+                        {
+                            "type": "string",
+                            "icon": "sicon-numbered-list",
+                            "label": "القيمة",
+                            "id": "stats.value",
+                            "format": "text",
+                            "required": true,
+                            "maxLength": 20
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "التسمية",
+                            "id": "stats.label",
+                            "format": "text",
+                            "required": true,
+                            "multilanguage": true,
+                            "maxLength": 40
+                        }
                     ]
                 }
             ]
         },
         {
             "key": "b2f0c8d2-3b4e-4f6a-9c1d-0e1f2a3b4c02",
-            "title": { "en": "PhoneX Brands", "ar": "شريط الماركات" },
+            "title": {
+                "en": "PhoneX Brands",
+                "ar": "شريط الماركات"
+            },
             "icon": "sicon-award-ribbon",
             "path": "home.phonex-brands",
             "is_default": true,
             "fields": [
-                { "type": "items", "icon": "sicon-keyboard_arrow_down", "label": "الماركات", "id": "brands", "format": "dropdown-list", "selected": [], "options": [], "required": true, "multichoice": true, "searchable": true, "source": "brands" }
+                {
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "label": "الماركات",
+                    "id": "brands",
+                    "format": "dropdown-list",
+                    "selected": [],
+                    "options": [],
+                    "required": true,
+                    "multichoice": true,
+                    "searchable": true,
+                    "source": "brands"
+                }
             ]
         },
         {
             "key": "c3f0c8d2-3b4e-4f6a-9c1d-0e1f2a3b4c03",
-            "title": { "en": "PhoneX Categories", "ar": "الفئات" },
+            "title": {
+                "en": "PhoneX Categories",
+                "ar": "الفئات"
+            },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.phonex-categories",
             "is_default": true,
             "fields": [
-                { "type": "string", "icon": "sicon-format-text-alt", "label": "العنوان", "id": "title", "format": "text", "multilanguage": true, "value": "تسوق حسب الفئة", "maxLength": 80 },
-                { "id": "tiles", "type": "collection", "format": "collection", "label": "الفئات", "required": true, "minLength": 2, "maxLength": 4, "item_label": "فئة",
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "id": "title",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "تسوق حسب الفئة",
+                    "maxLength": 80
+                },
+                {
+                    "id": "tiles",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الفئات",
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 4,
+                    "item_label": "فئة",
                     "fields": [
-                        { "type": "string", "icon": "sicon-image", "label": "الصورة", "id": "tiles.image", "format": "image", "required": true },
-                        { "type": "string", "icon": "sicon-format-text-alt", "label": "الاسم", "id": "tiles.title", "format": "text", "required": true, "multilanguage": true, "maxLength": 60 },
-                        { "type": "string", "icon": "sicon-text-field", "label": "كلمة إنجليزية", "id": "tiles.tag", "format": "text", "maxLength": 20 },
-                        { "type": "string", "icon": "sicon-typography", "label": "الوصف", "id": "tiles.description", "format": "textarea", "multilanguage": true, "maxLength": 160 }
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "label": "الصورة",
+                            "id": "tiles.image",
+                            "format": "image",
+                            "required": true
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "الاسم",
+                            "id": "tiles.title",
+                            "format": "text",
+                            "required": true,
+                            "multilanguage": true,
+                            "maxLength": 60
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-text-field",
+                            "label": "كلمة إنجليزية",
+                            "id": "tiles.tag",
+                            "format": "text",
+                            "maxLength": 20
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "الوصف",
+                            "id": "tiles.description",
+                            "format": "textarea",
+                            "multilanguage": true,
+                            "maxLength": 160
+                        }
                     ]
                 }
             ]
         },
         {
             "key": "d4f0c8d2-3b4e-4f6a-9c1d-0e1f2a3b4c04",
-            "title": { "en": "PhoneX Products", "ar": "المنتجات المميزة" },
+            "title": {
+                "en": "PhoneX Products",
+                "ar": "المنتجات المميزة"
+            },
             "icon": "sicon-mobile-touch",
             "path": "home.phonex-products",
             "is_default": true,
             "fields": [
-                { "type": "string", "icon": "sicon-format-text-alt", "label": "العنوان", "id": "title", "format": "text", "multilanguage": true, "value": "أكثر المنتجات طلباً", "maxLength": 80 },
-                { "type": "string", "icon": "sicon-typography", "label": "الوصف", "id": "subtitle", "format": "text", "multilanguage": true, "maxLength": 120 },
-                { "type": "items", "icon": "sicon-keyboard_arrow_down", "label": "المنتجات", "id": "products", "format": "dropdown-list", "selected": [], "options": [], "required": true, "multichoice": true, "searchable": true, "source": "products", "minLength": 4, "maxLength": 12 }
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "id": "title",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "أكثر المنتجات طلباً",
+                    "maxLength": 80
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "الوصف",
+                    "id": "subtitle",
+                    "format": "text",
+                    "multilanguage": true,
+                    "maxLength": 120
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "label": "المنتجات",
+                    "id": "products",
+                    "format": "dropdown-list",
+                    "selected": [],
+                    "options": [],
+                    "required": true,
+                    "multichoice": true,
+                    "searchable": true,
+                    "source": "products",
+                    "minLength": 4,
+                    "maxLength": 12
+                }
             ]
         },
         {
             "key": "e5f0c8d2-3b4e-4f6a-9c1d-0e1f2a3b4c05",
-            "title": { "en": "PhoneX Deal", "ar": "عرض اليوم" },
+            "title": {
+                "en": "PhoneX Deal",
+                "ar": "عرض اليوم"
+            },
             "icon": "sicon-fire",
             "path": "home.phonex-deal",
             "is_default": true,
             "fields": [
-                { "type": "string", "icon": "sicon-format-text-alt", "label": "العنوان", "id": "title", "format": "text", "multilanguage": true, "value": "لا تفوّت هذا السعر", "maxLength": 80 },
-                { "type": "string", "icon": "sicon-tag", "label": "الشارة", "id": "subtitle", "format": "text", "multilanguage": true, "value": "عرض محدود الوقت", "maxLength": 120 },
-                { "type": "items", "icon": "sicon-mobile-touch", "label": "منتج العرض", "id": "product", "format": "dropdown-list", "selected": [], "options": [], "required": true, "searchable": true, "source": "products" },
-                { "type": "string", "icon": "sicon-calendar-date", "label": "وقت الانتهاء", "id": "ends_at", "format": "text", "required": true, "placeholder": "2025-12-31T23:59:59" },
-                { "type": "string", "icon": "sicon-wallet-minus", "label": "نص التوفير", "id": "saved_text", "format": "text", "multilanguage": true, "maxLength": 60 },
-                { "type": "number", "icon": "sicon-progress-bar", "label": "نسبة البيع %", "id": "stock_percent", "format": "integer", "minimum": 0, "maximum": 100, "value": 82 },
-                { "type": "string", "icon": "sicon-packed-box", "label": "نص شريط الكمية", "id": "stock_text", "format": "text", "multilanguage": true, "maxLength": 80 }
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "id": "title",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "لا تفوّت هذا السعر",
+                    "maxLength": 80
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-tag",
+                    "label": "الشارة",
+                    "id": "subtitle",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "عرض محدود الوقت",
+                    "maxLength": 120
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-mobile-touch",
+                    "label": "منتج العرض",
+                    "id": "product",
+                    "format": "dropdown-list",
+                    "selected": [],
+                    "options": [],
+                    "required": true,
+                    "searchable": true,
+                    "source": "products"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-calendar-date",
+                    "label": "وقت الانتهاء",
+                    "id": "ends_at",
+                    "format": "text",
+                    "required": true,
+                    "placeholder": "2025-12-31T23:59:59"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-wallet-minus",
+                    "label": "نص التوفير",
+                    "id": "saved_text",
+                    "format": "text",
+                    "multilanguage": true,
+                    "maxLength": 60
+                },
+                {
+                    "type": "number",
+                    "icon": "sicon-progress-bar",
+                    "label": "نسبة البيع %",
+                    "id": "stock_percent",
+                    "format": "integer",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "value": 82
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-packed-box",
+                    "label": "نص شريط الكمية",
+                    "id": "stock_text",
+                    "format": "text",
+                    "multilanguage": true,
+                    "maxLength": 80
+                }
             ]
         },
         {
             "key": "f6f0c8d2-3b4e-4f6a-9c1d-0e1f2a3b4c06",
-            "title": { "en": "PhoneX Trust", "ar": "مميزات المتجر" },
+            "title": {
+                "en": "PhoneX Trust",
+                "ar": "مميزات المتجر"
+            },
             "icon": "sicon-shield-check",
             "path": "home.phonex-trust",
             "is_default": true,
             "fields": [
-                { "type": "string", "icon": "sicon-format-text-alt", "label": "العنوان", "id": "title", "format": "text", "multilanguage": true, "value": "تجربة تُصنع بثقة", "maxLength": 80 },
-                { "id": "features", "type": "collection", "format": "collection", "label": "المميزات", "required": true, "minLength": 2, "maxLength": 6, "item_label": "ميزة",
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "id": "title",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "تجربة تُصنع بثقة",
+                    "maxLength": 80
+                },
+                {
+                    "id": "features",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "المميزات",
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 6,
+                    "item_label": "ميزة",
                     "fields": [
-                        { "type": "string", "icon": "sicon-smile", "label": "الأيقونة", "id": "features.icon", "format": "icon", "value": "sicon-store2" },
-                        { "type": "string", "icon": "sicon-format-text-alt", "label": "العنوان", "id": "features.title", "format": "text", "required": true, "multilanguage": true, "maxLength": 60 },
-                        { "type": "string", "icon": "sicon-typography", "label": "الوصف", "id": "features.description", "format": "textarea", "multilanguage": true, "maxLength": 160 }
+                        {
+                            "type": "string",
+                            "icon": "sicon-smile",
+                            "label": "الأيقونة",
+                            "id": "features.icon",
+                            "format": "icon",
+                            "value": "sicon-store2"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "العنوان",
+                            "id": "features.title",
+                            "format": "text",
+                            "required": true,
+                            "multilanguage": true,
+                            "maxLength": 60
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "الوصف",
+                            "id": "features.description",
+                            "format": "textarea",
+                            "multilanguage": true,
+                            "maxLength": 160
+                        }
                     ]
                 }
             ]
         },
         {
             "key": "07f0c8d2-3b4e-4f6a-9c1d-0e1f2a3b4c07",
-            "title": { "en": "PhoneX Reviews", "ar": "آراء العملاء" },
+            "title": {
+                "en": "PhoneX Reviews",
+                "ar": "آراء العملاء"
+            },
             "icon": "sicon-chat-bubbles",
             "path": "home.phonex-reviews",
             "is_default": true,
             "fields": [
-                { "type": "string", "icon": "sicon-format-text-alt", "label": "العنوان", "id": "title", "format": "text", "multilanguage": true, "value": "ماذا يقولون عنّا", "maxLength": 80 },
-                { "type": "string", "icon": "sicon-star", "label": "التقييم", "id": "summary", "format": "text", "value": "4.9 من 12,400+ تقييم موثّق", "maxLength": 100 },
-                { "id": "items", "type": "collection", "format": "collection", "label": "التقييمات", "required": true, "minLength": 1, "maxLength": 6, "item_label": "رأي",
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "id": "title",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "ماذا يقولون عنّا",
+                    "maxLength": 80
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-star",
+                    "label": "التقييم",
+                    "id": "summary",
+                    "format": "text",
+                    "value": "4.9 من 12,400+ تقييم موثّق",
+                    "maxLength": 100
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "التقييمات",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 6,
+                    "item_label": "رأي",
                     "fields": [
-                        { "type": "string", "icon": "sicon-format-text-alt", "label": "الاسم", "id": "items.name", "format": "text", "required": true, "maxLength": 60 },
-                        { "type": "string", "icon": "sicon-image", "label": "الصورة", "id": "items.avatar", "format": "image" },
-                        { "type": "number", "icon": "sicon-star", "label": "النجوم", "id": "items.stars", "format": "integer", "minimum": 1, "maximum": 5, "value": 5 },
-                        { "type": "string", "icon": "sicon-typography", "label": "النص", "id": "items.text", "format": "textarea", "required": true, "multilanguage": true, "maxLength": 300 },
-                        { "type": "string", "icon": "sicon-location", "label": "المدينة والمنتج", "id": "items.meta", "format": "text", "multilanguage": true, "maxLength": 80 }
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "الاسم",
+                            "id": "items.name",
+                            "format": "text",
+                            "required": true,
+                            "maxLength": 60
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "label": "الصورة",
+                            "id": "items.avatar",
+                            "format": "image"
+                        },
+                        {
+                            "type": "number",
+                            "icon": "sicon-star",
+                            "label": "النجوم",
+                            "id": "items.stars",
+                            "format": "integer",
+                            "minimum": 1,
+                            "maximum": 5,
+                            "value": 5
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "النص",
+                            "id": "items.text",
+                            "format": "textarea",
+                            "required": true,
+                            "multilanguage": true,
+                            "maxLength": 300
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-location",
+                            "label": "المدينة والمنتج",
+                            "id": "items.meta",
+                            "format": "text",
+                            "multilanguage": true,
+                            "maxLength": 80
+                        }
                     ]
                 }
             ]
         },
         {
             "key": "18f0c8d2-3b4e-4f6a-9c1d-0e1f2a3b4c08",
-            "title": { "en": "PhoneX Newsletter", "ar": "النشرة البريدية" },
+            "title": {
+                "en": "PhoneX Newsletter",
+                "ar": "النشرة البريدية"
+            },
             "icon": "sicon-email",
             "path": "home.phonex-newsletter",
             "is_default": true,
             "fields": [
-                { "type": "string", "icon": "sicon-tag", "label": "الشارة", "id": "badge", "format": "text", "multilanguage": true, "value": "خصم 5% على أول طلب", "maxLength": 60 },
-                { "type": "string", "icon": "sicon-format-text-alt", "label": "العنوان", "id": "title", "format": "text", "multilanguage": true, "value": "اشترك ليصلك كل جديد", "maxLength": 100 },
-                { "type": "string", "icon": "sicon-typography", "label": "الوصف", "id": "description", "format": "textarea", "multilanguage": true, "value": "إصدارات، عروض حصرية، وأكواد خصم قبل الجميع.", "maxLength": 200 },
-                { "type": "string", "icon": "sicon-send", "label": "نص الزر", "id": "button_label", "format": "text", "multilanguage": true, "value": "اشترك", "maxLength": 30 }
+                {
+                    "type": "string",
+                    "icon": "sicon-tag",
+                    "label": "الشارة",
+                    "id": "badge",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "خصم 5% على أول طلب",
+                    "maxLength": 60
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "id": "title",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "اشترك ليصلك كل جديد",
+                    "maxLength": 100
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "الوصف",
+                    "id": "description",
+                    "format": "textarea",
+                    "multilanguage": true,
+                    "value": "إصدارات، عروض حصرية، وأكواد خصم قبل الجميع.",
+                    "maxLength": 200
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-send",
+                    "label": "نص الزر",
+                    "id": "button_label",
+                    "format": "text",
+                    "multilanguage": true,
+                    "value": "اشترك",
+                    "maxLength": 30
+                }
             ]
         }
-    ]
+    ],
+    "version": "1.0.0",
+    "theme_name": "PhoneX",
+    "repo_url": "https://github.com/alialhmeed08-cloud/theme-phonex"
 }

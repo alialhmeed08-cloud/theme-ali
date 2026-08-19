@@ -39,6 +39,10 @@
     {# PhoneX — preconnect for CDN fonts #}
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
+    {# ===== PhoneX CSS ===== #}
+    <link rel="stylesheet" href="{{ 'app.css'|asset }}">
+    {% block styles %}{% endblock %}
+
     {% hook 'head:end' %}
 </head>
 
@@ -74,6 +78,10 @@
     <salla-login-modal></salla-login-modal>
     <salla-scopes></salla-scopes>
     <salla-add-product-toast></salla-add-product-toast>
+
+    {# ===== PhoneX JS ===== #}
+    <script defer src="{{ 'app.js'|asset }}"></script>
+    {% block scripts %}{% endblock %}
 
     {% hook 'body:end' %}
 </body>

@@ -1,14 +1,11 @@
 {
-    "name": {
-        "ar": "فون إكس",
-        "en": "PhoneX"
-    },
+    "name": { "ar": "فون إكس", "en": "PhoneX" },
     "repository": "https://github.com/alialhmeed08-cloud/theme-ali",
     "author_email": "support@salla.sa",
     "support_url": "https://salla.com/",
     "description": {
-        "ar": "قالب فون إكس لمتاجر الجوالات — تصميم داكن احترافي مبني على بنية قالب رائد",
-        "en": "PhoneX theme for mobile stores - professional dark design based on theme-raed"
+        "ar": "قالب فون إكس لمتاجر الجوالات - تصميم داكن احترافي مبني على بنية قالب رائد",
+        "en": "PhoneX theme for mobile stores - dark professional design based on theme-raed"
     },
     "features": [
         "fonts",
@@ -25,28 +22,6 @@
             "label": "الوضع الداكن افتراضياً",
             "description": null,
             "id": "phonenx_dark_mode_default",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار شريط التقدم أعلى الصفحة",
-            "description": null,
-            "id": "phonenx_progress_bar",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-image",
-            "label": "إظهار طبقة الضجيج",
-            "description": null,
-            "id": "phonenx_noise_overlay",
             "format": "switch",
             "required": false,
             "value": true,

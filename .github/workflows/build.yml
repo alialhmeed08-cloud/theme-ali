@@ -1,0 +1,24 @@
+name: Build Theme Assets
+on:
+  push:
+    branches: [master, main]
+jobs:
+  build:
+    if:"!contains(github.event.head_commit.message,'build: public')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm i -g pnpm@9
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm production
+      - name: Commit public
+        run: |
+          git config user.name"github-actions[bot]"
+          git config user.email"actions@users.noreply.github.com"
+          git add public
+          git diff --cached --quiet || { git commit -m"build: public assets"; git push; }

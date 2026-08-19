@@ -1,41 +1,25 @@
 {
-  "name": "theme-phonenx",
-  "version": "1.0.0",
-  "description": "PhoneX — Salla theme",
-  "repository": "https://github.com/alialhmeed08-cloud/theme-phonex",
-  "author": "Ali Alhmeed",
-  "license": "MIT",
-  "engines": { "node": ">=22.18.0" },
-  "packageManager": "pnpm@9.15.0",
-  "scripts": {
-    "dev": "webpack --mode development --watch",
-    "production": "webpack --mode production",
-    "build": "webpack --mode production",
-    "tailwind": "tailwindcss -i ./src/assets/styles/01-settings/tailwind.scss -o ./src/assets/styles/01-settings/_tw.css --watch"
+"name":"theme-phonenx",
+"version":"1.0.0",
+"private": true,
+"scripts": {
+"dev":"webpack --mode development --watch",
+"production":"webpack --mode production"
   },
-  "dependencies": {
-    "@salla.sa/twilight": "latest",
-    "@salla.sa/twilight-components": "latest",
-    "animejs": "^3.2.2",
-    "fslightbox": "^3.4.2",
-    "lite-youtube-embed": "^0.3.3",
-    "mmenu-light": "^3.2.1",
-    "sweetalert2": "^11.14.5"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
-    "autoprefixer": "^10.4.20",
-    "babel-loader": "^9.2.1",
-    "css-loader": "^7.1.2",
-    "css-minimizer-webpack-plugin": "^7.0.0",
-    "mini-css-extract-plugin": "^2.9.2",
-    "postcss": "^8.4.49",
-    "postcss-loader": "^8.1.1",
-    "sass": "^1.81.0",
-    "sass-loader": "^16.0.3",
-    "tailwindcss": "^3.4.15",
-    "webpack": "^5.96.1",
-    "webpack-cli": "^5.1.4"
+"devDependencies": {
+"@babel/core":"^7.26.0",
+"@babel/preset-env":"^7.26.0",
+"autoprefixer":"^10.4.20",
+"babel-loader":"^9.2.1",
+"css-loader":"^7.1.2",
+"css-minimizer-webpack-plugin":"^7.0.0",
+"mini-css-extract-plugin":"^2.9.2",
+"postcss":"^8.4.49",
+"postcss-loader":"^8.1.1",
+"sass":"^1.81.0",
+"sass-loader":"^16.0.3",
+"tailwindcss":"^3.4.15",
+"webpack":"^5.96.1",
+"webpack-cli":"^5.1.4"
   }
 }

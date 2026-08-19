@@ -1,67 +1,67 @@
 {
-    "phonenx": {
-        "hero": {
-            "shop_now": "Shop Now",
-            "deal_of_day": "Today's Deals",
-            "happy_customers": "Happy Customers",
-            "products_available": "Products Available",
-            "fast_delivery": "Fast Delivery"
+"phonenx": {
+"hero": {
+"shop_now":"Shop Now",
+"deal_of_day":"Today's Deals",
+"happy_customers":"Happy Customers",
+"products_available":"Products Available",
+"fast_delivery":"Fast Delivery"
         },
-        "categories": {
-            "label": "Categories",
-            "title": "Browse by Category",
-            "all_categories": "All Categories",
-            "shop": "Shop",
-            "flagship": "Flagship",
-            "flagship_desc": "The most powerful and best-selling devices",
-            "midrange": "Mid-Range",
-            "midrange_desc": "Powerful performance at an affordable price",
-            "accessories": "Accessories",
-            "accessories_desc": "Headphones, cases, chargers, smartwatches and more",
-            "renewed": "Renewed",
-            "renewed_desc": "Professionally renewed with full warranty"
+"categories": {
+"label":"Categories",
+"title":"Browse by Category",
+"all_categories":"All Categories",
+"shop":"Shop",
+"flagship":"Flagship",
+"flagship_desc":"The most powerful and best-selling devices",
+"midrange":"Mid-Range",
+"midrange_desc":"Powerful performance at an affordable price",
+"accessories":"Accessories",
+"accessories_desc":"Headphones, cases, chargers, smartwatches and more",
+"renewed":"Renewed",
+"renewed_desc":"Professionally renewed with full warranty"
         },
-        "featured": {
-            "label": "Featured Products",
-            "title": "Most Popular Products",
-            "deal_of_day": "Deal of the Day",
-            "view_all": "View All Products",
-            "all": "All"
+"featured": {
+"label":"Featured Products",
+"title":"Most Popular Products",
+"deal_of_day":"Deal of the Day",
+"view_all":"View All Products",
+"all":"All"
         },
-        "deal": {
-            "badge": "Limited Time Offer",
-            "title": "Don't Miss This Price",
-            "subtitle": "Offer ends in:",
-            "hours": "Hours",
-            "minutes": "Minutes",
-            "seconds": "Seconds",
-            "save": "Save",
-            "get_deal": "Get the Deal",
-            "sold_out": "Sold"
+"deal": {
+"badge":"Limited Time Offer",
+"title":"Don't Miss This Price",
+"subtitle":"Offer ends in:",
+"hours":"Hours",
+"minutes":"Minutes",
+"seconds":"Seconds",
+"save":"Save",
+"get_deal":"Get the Deal",
+"sold_out":"Sold"
         },
-        "features": {
-            "label": "Why Us?",
-            "title": "An Experience Built on Trust",
-            "delivery": "24-Hour Delivery",
-            "delivery_desc": "We deliver to all regions quickly and safely",
-            "warranty": "Full Official Warranty",
-            "warranty_desc": "All our devices are original with official warranty",
-            "installment": "Interest-Free Installments",
-            "installment_desc": "Split over 12 months with no interest",
-            "exchange": "Free Exchange",
-            "exchange_desc": "Exchange your device within 7 days"
+"features": {
+"label":"Why Us?",
+"title":"An Experience Built on Trust",
+"delivery":"24-Hour Delivery",
+"delivery_desc":"We deliver to all regions quickly and safely",
+"warranty":"Full Official Warranty",
+"warranty_desc":"All our devices are original with official warranty",
+"installment":"Interest-Free Installments",
+"installment_desc":"Split over 12 months with no interest",
+"exchange":"Free Exchange",
+"exchange_desc":"Exchange your device within 7 days"
         },
-        "testimonials": {
-            "label": "Customer Reviews",
-            "title": "What They Say About Us",
-            "from": "from",
-            "verified_reviews": "verified reviews"
+"testimonials": {
+"label":"Customer Reviews",
+"title":"What They Say About Us",
+"from":"from",
+"verified_reviews":"verified reviews"
         },
-        "newsletter": {
-            "title": "5% Off Your First Order",
-            "desc": "Subscribe to get new releases, exclusive offers, and discount codes.",
-            "subscribe": "Subscribe",
-            "email_placeholder": "Email address"
+"newsletter": {
+"title":"5% Off Your First Order",
+"desc":"Subscribe to get new releases, exclusive offers, and discount codes.",
+"subscribe":"Subscribe",
+"email_placeholder":"Email address"
         }
     }
 }

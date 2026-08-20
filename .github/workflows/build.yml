@@ -14,8 +14,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install --no-fund --no-audit
-      - run: npm run production
+      - run: npm install -g pnpm
+      - run: pnpm install
+      - run: pnpm run production
       - name: Push public folder
         run: |
           git config user.name "builder-bot"

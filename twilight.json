@@ -73,7 +73,42 @@
             },
             "icon": "sicon-home",
             "path": "home.phonex-hero",
-            "is_default": true
+            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "phonenx_hero_title",
+                    "label": "العنوان الرئيسي",
+                    "format": "text",
+                    "required": false,
+                    "value": null
+                },
+                {
+                    "type": "string",
+                    "id": "phonenx_hero_description",
+                    "label": "الوصف",
+                    "format": "textarea",
+                    "required": false,
+                    "value": null
+                },
+                {
+                    "type": "string",
+                    "id": "phonenx_hero_image",
+                    "label": "صورة المنتج",
+                    "format": "image",
+                    "required": false,
+                    "value": null
+                },
+                {
+                    "type": "string",
+                    "id": "phonenx_hero_primary_text",
+                    "label": "نص زر التسوق",
+                    "format": "text",
+                    "required": false,
+                    "value": "تسوّق الآن"
+                }
+            ]
         },
         {
             "key": "b8e3a84b-d1aa-4eb1-b972-462dd50346e3",
@@ -83,7 +118,18 @@
             },
             "icon": "sicon-grid",
             "path": "home.phonex-categories",
-            "is_default": true
+            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "phonenx_categories_title",
+                    "label": "عنوان القسم",
+                    "format": "text",
+                    "required": false,
+                    "value": "تصفح التصنيفات"
+                }
+            ]
         },
         {
             "key": "2377e435-fdd3-4e49-b67a-0c60e5d38313",
@@ -93,7 +139,18 @@
             },
             "icon": "sicon-smartphone",
             "path": "home.phonex-products",
-            "is_default": true
+            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "phonenx_products_title",
+                    "label": "عنوان القسم",
+                    "format": "text",
+                    "required": false,
+                    "value": "أجهزة مميزة"
+                }
+            ]
         },
         {
             "key": "0f231d59-74cc-4695-8f91-4417f417e7b8",
@@ -103,7 +160,26 @@
             },
             "icon": "sicon-fire",
             "path": "home.phonex-deal",
-            "is_default": true
+            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
+            "fields": [
+                {
+                    "type": "product",
+                    "id": "product",
+                    "label": "منتج العرض",
+                    "format": "product",
+                    "required": false,
+                    "value": null
+                },
+                {
+                    "type": "string",
+                    "id": "phonenx_deal_title",
+                    "label": "عنوان العرض",
+                    "format": "text",
+                    "required": false,
+                    "value": "لا تفوّت هذا السعر"
+                }
+            ]
         },
         {
             "key": "b33e7159-775a-4cb7-b701-d7c2a36440b5",
@@ -113,7 +189,18 @@
             },
             "icon": "sicon-shield",
             "path": "home.phonex-trust",
-            "is_default": true
+            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "phonenx_trust_title",
+                    "label": "عنوان القسم",
+                    "format": "text",
+                    "required": false,
+                    "value": "لماذا نحن"
+                }
+            ]
         },
         {
             "key": "ed3544b5-c626-4d6f-9e20-98489bfdc6b5",
@@ -123,7 +210,18 @@
             },
             "icon": "sicon-star",
             "path": "home.phonex-reviews",
-            "is_default": true
+            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "phonenx_reviews_title",
+                    "label": "عنوان القسم",
+                    "format": "text",
+                    "required": false,
+                    "value": "آراء عملائنا"
+                }
+            ]
         },
         {
             "key": "e58f0ec1-36a7-4aec-a6b1-a9ac3e38c074",
@@ -133,7 +231,18 @@
             },
             "icon": "sicon-mail",
             "path": "home.phonex-newsletter",
-            "is_default": true
+            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "phonenx_newsletter_title",
+                    "label": "عنوان النشرة",
+                    "format": "text",
+                    "required": false,
+                    "value": "اشترك في النشرة البريدية"
+                }
+            ]
         },
         {
             "key": "58d2dc55-2601-422e-9754-cfe9ad0fa6ef",
@@ -143,7 +252,18 @@
             },
             "icon": "sicon-tag",
             "path": "home.phonex-brands",
-            "is_default": true
+            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "phonenx_brands_title",
+                    "label": "عنوان القسم",
+                    "format": "text",
+                    "required": false,
+                    "value": "العلامات التجارية"
+                }
+            ]
         }
     ]
 }

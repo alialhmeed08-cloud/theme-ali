@@ -1,0 +1,80 @@
+{#
+| PhoneX — Hero Section
+| Uses store.name, store.description, store.settings + theme.settings for customization
+#}
+<section id="home" class="phonenx-hero" aria-label="{{ store.name }}">
+    <div class="container">
+        <div class="hero-grid">
+
+            {# ===== Hero Content ===== #}
+            <div class="hero-content">
+                <div class="hero-badge">
+                    {# ✅ FIX: 'now.year'|date('Y') خطأ Twig — الصحيح "now"|date('Y') #}
+                    {{ theme.settings.get('phonenx_hero_badge')|default(store.name ~ ' — ' ~ "now"|date('Y')) }}
+                </div>
+
+                <h1 class="hero-title">
+                    {{ theme.settings.get('phonenx_hero_title')|default(store.name) }}
+                </h1>
+
+                <p class="hero-desc">
+                    {{ theme.settings.get('phonenx_hero_description')|default(store.description|striptags) }}
+                </p>
+
+                {# ===== CTA Buttons ===== #}
+                <div class="hero-actions">
+                    <a href="{{ link('products') }}" class="btn-primary charge">
+                        {{ theme.settings.get('phonenx_hero_primary_text')|default(trans('common.elements.shop_now')|default('تسوّق الآن')) }}
+                        <i class="sicon-arrow-left rtl:rotate-180"></i>
+                    </a>
+                    <a href="#deal" class="btn-secondary">
+                        {{ theme.settings.get('phonenx_hero_secondary_text')|default('عروض اليوم 🏷️') }}
+                    </a>
+                </div>
+
+                {# ===== Hero Stats ===== #}
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-value">{{ theme.settings.get('phonenx_stat1_value')|default('60K+') }}</span>
+                        <span class="stat-label">{{ theme.settings.get('phonenx_stat1_label')|default('عميل سعيد') }}</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="stat-value">{{ theme.settings.get('phonenx_stat2_value')|default('800+') }}</span>
+                        <span class="stat-label">{{ theme.settings.get('phonenx_stat2_label')|default('منتج متوفر') }}</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="stat-value">{{ theme.settings.get('phonenx_stat3_value')|default('24h') }}</span>
+                        <span class="stat-label">{{ theme.settings.get('phonenx_stat3_label')|default('توصيل سريع') }}</span>
+                    </div>
+                </div>
+            </div>
+
+            {# ===== Hero Image (Featured Product) ===== #}
+            <div class="hero-visual">
+                <div class="hero-image-wrap charge">
+                    <img src="{{ theme.settings.get('phonenx_hero_image')|default('images/placeholder.png'|asset) }}"
+                         alt="{{ theme.settings.get('phonenx_hero_product_name')|default(store.name) }}"
+                         loading="eager"
+                         fetchpriority="high">
+                </div>
+
+                {# Floating spec badges (PhoneX signature) #}
+                {% if theme.settings.get('phonenx_hero_spec1') %}
+                    <span class="hero-spec hero-spec-1">{{ theme.settings.get('phonenx_hero_spec1') }}</span>
+                {% endif %}
+                {% if theme.settings.get('phonenx_hero_spec2') %}
+                    <span class="hero-spec hero-spec-2">{{ theme.settings.get('phonenx_hero_spec2') }}</span>
+                {% endif %}
+                {% if theme.settings.get('phonenx_hero_spec3') %}
+                    <span class="hero-spec hero-spec-3">{{ theme.settings.get('phonenx_hero_spec3') }}</span>
+                {% endif %}
+
+                {% if theme.settings.get('phonenx_hero_badge_product') %}
+                    <span class="hero-product-badge">{{ theme.settings.get('phonenx_hero_badge_product')|default('الأكثر طلباً') }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

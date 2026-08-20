@@ -1,0 +1,70 @@
+{#
+| PhoneX — Featured Products with Tabs
+| Compatible with theme-raed home.js initFeaturedTabs()
+| Uses: .tab-trigger, data-component-id, data-target, .tabs-wrapper, .s-block-tabs
+#}
+{% set component_id = section.id|default('phonenx-featured') %}
+
+<section id="{{ component_id }}" class="phonenx-featured s-block s-block-tabs" aria-label="{{ section.title|default('أجهزة مميزة') }}">
+    <div class="container">
+
+        {# ===== Section Header ===== #}
+        <div class="section-header">
+            <div>
+                <span class="section-label">{{ section.subtitle|default('أجهزة مميزة') }}</span>
+                <h2 class="section-title serif">{{ section.title|default('أكثر المنتجات طلباً') }}</h2>
+            </div>
+            <a href="#deal" class="section-link charge">
+                {{ trans('common.elements.deal_of_day')|default('عرض اليوم') }} 🔥
+            </a>
+        </div>
+
+        {# ===== Tabs Triggers ===== #}
+        {% if section.tabs is defined and section.tabs|length > 0 %}
+            <div class="featured-tabs" role="tablist">
+                {% for tab in section.tabs %}
+                    <button type="button"
+                            class="tab-trigger {% if loop.first %}is-active{% endif %}"
+                            data-component-id="{{ component_id }}"
+                            data-target="tab-{{ tab.id }}"
+                            role="tab"
+                            aria-selected="{{ loop.first ? 'true' : 'false' }}">
+                        {{ tab.name }}
+                    </button>
+                {% endfor %}
+            </div>
+
+            {# ===== Tabs Content ===== #}
+            <div class="tabs-wrapper">
+                {% for tab in section.tabs %}
+                    <div id="tab-{{ tab.id }}"
+                         class="tab-content {% if loop.first %}is-active{% endif %}"
+                         role="tabpanel">
+                        <div class="products-grid">
+                            {% for product in tab.products %}
+                                <salla-product-card product="{{ product }}" class="charge"></salla-product-card>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            {# No tabs: show products directly #}
+            <div class="products-grid">
+                {% for product in section.products %}
+                    <salla-product-card product="{{ product }}" class="charge"></salla-product-card>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {# ===== View All Button ===== #}
+        {% if theme.settings.get('is_more_button_enabled') %}
+            <div class="featured-view-all">
+                <a href="{{ link('products') }}" class="btn-secondary charge">
+                    {{ trans('common.elements.view_all_products')|default('عرض جميع المنتجات') }}
+                    <i class="sicon-arrow-left rtl:rotate-180"></i>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>

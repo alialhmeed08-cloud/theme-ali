@@ -1,0 +1,135 @@
+/* ==========================================================================
+   PhoneX — Footer
+   Layer: 04-components (theme-raed ITCSS)
+   ========================================================================== */
+
+.store-footer.phonenx-footer {
+    @apply mt-20;
+    background: var(--px-coal);
+    border-top: 1px solid var(--px-line);
+    color: var(--px-snow);
+}
+
+.store-footer__inner {
+    @apply py-16;
+}
+
+.footer-grid {
+    @apply grid gap-10;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+    @media (max-width: 1023px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 639px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Brand column */
+.footer-brand-col {
+    .footer-brand {
+        @apply inline-flex items-center mb-5;
+
+        img { @apply max-h-10 w-auto; }
+
+        .brand-text {
+            font-family: var(--font-display);
+            font-size: 27px;
+            color: var(--px-snow);
+        }
+    }
+
+    .footer-desc {
+        @apply max-w-sm leading-relaxed mb-6;
+        color: var(--px-mist);
+        font-size: 14px;
+    }
+
+    .footer-social {
+        @apply flex gap-3;
+    }
+}
+
+.footer-col-title {
+    @apply text-base font-bold mb-5;
+    color: var(--px-snow);
+}
+
+/* Menu column */
+.footer-menu-col {
+    salla-menu {
+        @apply flex flex-col gap-3;
+
+        a {
+            @apply text-sm;
+            color: var(--px-mist);
+            transition: color .3s;
+
+            &:hover { color: var(--px-ice); }
+        }
+    }
+}
+
+/* Contact column */
+.footer-contact-col {
+    salla-contacts {
+        @apply flex flex-col gap-3;
+        color: var(--px-mist);
+        font-size: 14px;
+
+        a:hover { color: var(--px-ice); }
+    }
+}
+
+/* Apps column */
+.footer-apps-col {
+    salla-apps-icons {
+        @apply flex flex-col gap-3;
+    }
+}
+
+/* Trust badges + VAT row */
+.footer-trust-row {
+    @apply flex items-center justify-between flex-wrap gap-6 mt-12 pt-8;
+    border-top: 1px solid var(--px-line);
+
+    salla-trust-badges {
+        @apply flex gap-3;
+    }
+}
+
+.footer-vat {
+    @apply flex items-end gap-2;
+
+    .footer-vat-label {
+        @apply text-sm mb-1;
+        color: var(--px-dim);
+    }
+
+    b {
+        @apply text-sm;
+        color: var(--px-snow);
+    }
+
+    img {
+        @apply w-10 rounded-sm;
+        transition: opacity .3s;
+        &:hover { opacity: .8; }
+    }
+}
+
+/* Bottom bar */
+.footer-bottom {
+    @apply flex items-center justify-between flex-wrap gap-4 py-5 text-center;
+    border-top: 1px solid var(--px-line);
+
+    .copyright-text {
+        @apply text-sm;
+        color: var(--px-dim);
+    }
+
+    salla-payments {
+        @apply flex gap-2;
+    }
+}

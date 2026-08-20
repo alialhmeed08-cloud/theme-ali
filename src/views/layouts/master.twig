@@ -1,0 +1,154 @@
+{# ############## Shared Variables in all views ################
+| Variable                                           | Type     | Description                                                                                              |
+|----------------------------------------------------|----------|----------------------------------------------------------------------------------------------------------|
+| store                                              | Store    |                                                                                                          |
+| store.id                                           | int      |                                                                                                          |
+| store.name                                         | string   |                                                                                                          |
+| store.username                                     | string   |                                                                                                          |
+| store.description                                  | string   |                                                                                                          |
+| store.slogan                                       | ?string  | * if feature in twilight.json                                                                            |
+| store.logo                                         | string   |                                                                                                          |
+| store.url                                          | string   |                                                                                                          |
+| store.api                                          | string   | the api url for current store                                                                            |
+| store.icon                                         | string   | *fav icon url                                                                                            |
+| store.contacts                                     | object   | [mobile, phone, email, whatsapp, telegram], ex. store.contacts.email                                     |
+| store.social                                       | object   | [instagram, snapchat, twitter, youtube, facebook, pinterest, maroof, whatsapp], ex. store.social.twitter |
+| store.settings                                     | object   |                                                                                                          |
+| store.settings.auth.email_allowed                  | bool     |                                                                                                          |
+| store.settings.auth.mobile_allowed                 | bool     |                                                                                                          |
+| store.settings.auth.is_email_required              | bool     |                                                                                                          |
+| store.settings.cart.apply_coupon_enabled           | bool     | Does visitor allowed to apply coupon in cart page                                                        |
+| store.settings.product.total_sold_enabled          | bool     |                                                                                                          |
+| store.settings.product.fit_type                    | ?string  | null when equal product card size is off, or ['cover', 'contain']                                        |
+| store.settings.category.testimonial_enabled        | bool     | Show random testimonials in category page                                                                |
+| store.settings.tax.number                          | ?string  |                                                                                                          |
+| store.settings.tax.certificate                     | ?string  | certificate image url                                                                                    |
+| store.settings.tax.taxable_prices_enabled          | bool     | Does tax included in the prices ex product_price 100 & tax is 15, price will be 115                      |
+| store.settings.rating_enabled                      | bool     | Is one of: store_enabled or shipping_enabled or products_enabled                                         |
+| store.settings.arabic_numbers_enabled              | bool     | Does the merchant wants the numbers to be shown as Arabic format                                         |
+| store.settings.is_multilingual                     | bool     |                                                                                                          |
+| store.settings.currencies_enabled                  | bool     |                                                                                                          |
+| theme                                              | Theme    |                                                                                                          |
+| theme.id                                           | int      |                                                                                                          |
+| theme.name                                         | string   |                                                                                                          |
+| theme.mode                                         | string   | `live`, `preview`                                                                                        |
+| theme.is_rtl                                       | bool     |                                                                                                          |
+| theme.translations_hash                            | int      | to be used in case merchant updated frontend store translations                                          |
+| theme.color                                        | object   |                                                                                                          |
+| theme.color.primary                                | string   |                                                                                                          |
+| theme.color.text                                   | string   | suitable text color comparing to `theme.primary.color`, #000000, #FFFFFF                                 |
+| theme.color.reverse_primary                        | string   |                                                                                                          |
+| theme.color.reverse_text                           | string   | if `theme.text_color=#000000` means that `theme.reverse_text_color=#FFFFFF`                              |
+| theme.color.is_dark                                | bool     | Does main store color `theme.primary.color` considered as dim color?                                     |
+| theme.color.darker(float alpha, ?string hexColor)  | string   | get darker color from `theme.primary.color` or from passed color, `alpha` range from 0.0-1.0             |
+| theme.color.lighter(float alpha, ?string hexColor) | string   | get lighter color from `theme.primary.color` or from passed color, `alpha` range from 0.0-1.0            |
+| theme.font                                         | ?object  | Salla predefined font, null when the theme doesn't have `fonts` feature                                  |
+| theme.font.name                                    | string   | DINNextLTArabic-Regular, Amazon-Ember, Apple, Dubai, Estedad                                             |
+| theme.font.url                                     | string   | css full url ex: 'https://my_store.test/dist/fonts/default.css'                                          |
+| theme.settings                                     | object   | dynamic object with values of the `settings` in twilight.json ex. `theme.settings.topnav_is_dark`        |
+| theme.settings.set(settingName, value)             | string   | set global var, then get it {{theme.settings.get('my_var','fallback') }}                                 |
+| theme.settings.get(settingName, default=null)      | mixed    | get theme setting ex `theme.settings.get('my_var', 'fallback')`                                          |
+#}
+<!DOCTYPE html>
+{# ✅ FIX: استخدام language.code و theme.is_rtl الصحيحين من الـ docs، مش store.settings.language/direction #}
+<html lang="{{ language.code }}"
+      dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}"
+      class="{% if theme.settings.get('phonenx_dark_mode_default', true) %}dark{% endif %}">
+<!-- بسم الله الرحمن الرحيم -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#050507">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
+
+    {# ✅ JS entry points — defer لعدم تعطيل الـ render #}
+    <script defer data-cfasync="false" crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
+
+    {% block head_scripts %}{% endblock %}
+
+    {# ✅ FIX: window globals التي يحتاجها app.js — كانت مفقودة كلياً في النسخة المكسورة #}
+    <script data-cfasync="false">
+        window.header_is_sticky    = "{{ theme.settings.get('header_is_sticky', true) }}"
+        window.imageZoom           = "{{ theme.settings.get('imageZoom') }}"
+        window.can_access_wallet   = {{ user.can_access_wallet | json_encode }}
+        window.enable_more_menu    = "{{ theme.settings.get('enable_more_menu', true) }}"
+        window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
+        window.notify_when_available_in_card = "{{ theme.settings.get('notify_when_available_in_card', true) }}"
+    </script>
+
+    {# ✅ FIX: hook head — ضروري لـ tracking services وسكريبتات سلة #}
+    {% hook 'head:start' %}
+    {% hook head %}
+
+    {% block styles %}{% endblock %}
+
+    {# ✅ FIX: تحميل الـ CSS — كان مفقوداً كلياً = السبب الرئيسي إن "ما يظهر شي" #}
+    <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+    {# ✅ FIX: theme.font.path|cdn — خط المتجر الذي يختاره التاجر من لوحة التحكم — كان مفقوداً #}
+    <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
+    <link rel="stylesheet" href="{{ 'fonts/sallaicons.css' | cdn }}"/>
+
+    {# PhoneX preconnect لـ CDN fonts #}
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+    <style>
+        :root {
+            --color-primary:         {{ theme.color.primary }};
+            --color-primary-dark:    {{ theme.color.darker(0.15) }};
+            --color-primary-light:   {{ theme.color.lighter(0.15) }};
+            --color-primary-reverse: {{ theme.color.reverse_text }};
+            /* PhoneX overrides للون الأساسي من لوحة التحكم */
+            --px-ice:      {{ theme.color.primary }};
+            --px-ice-soft: rgba(0, 180, 204, .12);
+        }
+    </style>
+
+    {# tracking services, custom css feature #}
+    {% hook 'head:end' %}
+</head>
+<body id="app" class="phonenx-body {% if is_page('index') %}page-home{% endif %} {% hook 'body:classes' %}">
+
+    {% hook 'body:start' %}
+
+    {# ===== PhoneX signature layers ===== #}
+    {% if theme.settings.get('phonenx_progress_bar', true) %}
+        <div class="progress" id="phonenx-progress" aria-hidden="true"></div>
+    {% endif %}
+
+    {% if theme.settings.get('phonenx_noise_overlay', true) %}
+        <div class="noise" aria-hidden="true"></div>
+    {% endif %}
+
+    {# ===== Header ===== #}
+    {% component 'header.header' %}
+
+    {# ===== Page Content ===== #}
+    <main id="main-content" class="phonenx-main">
+        {% block content %}{% endblock %}
+    </main>
+
+    {# ===== Footer ===== #}
+    {% component 'footer.footer' %}
+
+    {# ===== PhoneX Mobile Bottom Nav ===== #}
+    {% component 'home.phonenx-mobile-nav' %}
+
+    {# ===== Salla global web components — لا تحذف هذه #}
+    <salla-offer-modal></salla-offer-modal>
+    <salla-search></salla-search>
+    <salla-login-modal></salla-login-modal>
+    <salla-scopes></salla-scopes>
+    {% if theme.settings.get('enable_add_product_toast', true) %}
+        <salla-add-product-toast></salla-add-product-toast>
+    {% endif %}
+
+    {% block scripts %}{% endblock %}
+
+    {% hook 'body:end' %}
+</body>
+</html>

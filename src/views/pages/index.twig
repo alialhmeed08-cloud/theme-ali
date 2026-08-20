@@ -1,0 +1,14 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+    {#
+    | Render home page components in the order configured by the merchant
+    | in Salla dashboard (drag & drop). This is the exact theme-raed pattern.
+    #}
+    {% component home %}
+{% endblock %}
+
+{# ✅ FIX: home.js كان يُبنى بـ webpack لكن ما يُحمَّل أبداً — هذا سبب عدم عمل الـ countdown والـ tabs #}
+{% block scripts %}
+    <script defer src="{{ 'home.js' | asset }}"></script>
+{% endblock %}

@@ -1,0 +1,82 @@
+{# PhoneX — أجهزة مميزة (home.phonex-products) #}
+{% set title           = component.settings.get('title') %}
+{% set subtitle        = component.settings.get('subtitle') %}
+{% set products        = component.settings.get('products') %}
+{% set display_all_url = component.settings.get('display_all_url') %}
+
+<section class="px-section" id="products">
+    <div class="container">
+
+        <div class="px-section__head">
+            <div>
+                <span class="px-kicker">أجهزة مميزة</span>
+                <h2 class="px-section__title">{{ title|default('أكثر المنتجات طلباً') }}</h2>
+                {% if subtitle %}<p class="px-section__sub">{{ subtitle }}</p>{% endif %}
+            </div>
+            <a href="#deal" class="px-btn px-btn--ghost px-btn--sm">عرض اليوم 🔥</a>
+        </div>
+
+        {% if products is not empty %}
+
+            {% set brand_list = [] %}
+            {% for product in products %}
+                {% set bname = product.brand.name|default('') %}
+                {% if bname and bname not in brand_list %}
+                    {% set brand_list = brand_list|merge([bname]) %}
+                {% endif %}
+            {% endfor %}
+
+            {% if brand_list|length > 1 %}
+                <div class="px-tabs" data-px-tabs="px-products-grid">
+                    <button type="button" class="px-tab is-active" data-filter="all">الكل</button>
+                    {% for brand in brand_list %}
+                        <button type="button" class="px-tab" data-filter="{{ brand|lower }}">{{ brand }}</button>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="px-products" id="px-products-grid">
+                {% for product in products %}
+                    <a href="{{ product.url }}" class="px-card reveal"
+                       data-brands="{{ product.brand.name|default('')|lower }}"
+                       data-delay="{{ loop.index % 4 }}">
+                        <div class="px-card__media">
+                            {% if product.sale_price %}
+                                <span class="px-card__flag px-card__flag--sale">خصم</span>
+                            {% endif %}
+                            <img src="{{ product.thumbnail|default(theme.settings.get('placeholder')) }}"
+                                 alt="{{ product.name }}" loading="lazy">
+                        </div>
+                        <div class="px-card__body">
+                            {% if product.brand.name %}
+                                <span class="px-card__brand">{{ product.brand.name }}</span>
+                            {% endif %}
+                            <h3 class="px-card__name">{{ product.name }}</h3>
+                            <div class="px-card__foot">
+                                <span class="px-card__price px-num">{{ product.price }}</span>
+                                <salla-add-product-button product-id="{{ product.id }}" class="px-card__add"></salla-add-product-button>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+            {% if display_all_url %}
+                <div style="text-align:center;margin-top:2.6rem">
+                    <a href="{{ display_all_url }}" class="px-btn px-btn--ghost">
+                        عرض جميع المنتجات <i class="sicon-arrow-left"></i>
+                    </a>
+                </div>
+            {% endif %}
+
+        {% else %}
+            <div class="px-products" style="grid-template-columns:1fr">
+                <div class="px-feature" style="text-align:center;padding:3.5rem">
+                    <h3 style="margin-bottom:.6rem">أضف منتجاتك المميزة</h3>
+                    <p class="px-feature__desc">من لوحة التحكم → تخصيص القالب → «أجهزة مميزة» اختر المنتجات التي تريد إبرازها هنا.</p>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</section>

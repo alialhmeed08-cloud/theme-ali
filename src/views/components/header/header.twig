@@ -1,0 +1,77 @@
+{#
+| Variable         | Type    | Description
+|------------------|---------|---------------------------------
+| cart             | object  |
+| cart.items_count | int     |
+| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"
+#}
+{% set important_links = theme.settings.get('important_links') %}
+
+<header data-testid="store-header" class="store-header nav" id="phonenx-nav">
+    <div class="container">
+        <div class="nav-inner">
+
+            {# ===== Brand / Logo (theme-raed pattern) ===== #}
+            <a data-testid="store-header-logo" class="navbar-brand" href="{{ store.url }}" aria-label="{{ store.name }}">
+                {% if store.logo %}
+                    <img fetchpriority="high"
+                         loading="eager"
+                         src="{{ store.logo|cdn(175) }}"
+                         alt="{{ store.name }} logo">
+                {% else %}
+                    <span class="brand-text">{{ store.name }}</span>
+                {% endif %}
+                {% if is_page('index') %}
+                    <h1 class="sr-only">{{ store.name }}</h1>
+                {% else %}
+                    <h2 class="sr-only">{{ store.name }}</h2>
+                {% endif %}
+            </a>
+
+            {# ===== Main Navigation (Salla official menu) ===== #}
+            <nav class="nav-links" aria-label="{{ trans('common.elements.main_menu')|default('القائمة الرئيسية') }}">
+                <salla-menu data-testid="store-header-mainmenu" source="main" inline></salla-menu>
+            </nav>
+
+            {# ===== Nav Actions ===== #}
+            <div class="nav-actions">
+
+                {# Search (Salla official) #}
+                <salla-search data-testid="store-header-search" show-trigger class="phonenx-search"></salla-search>
+
+                {# Theme toggle (Dark / Light) #}
+                <button type="button"
+                        class="icon-btn charge phonenx-theme-toggle"
+                        id="phonenx-theme-toggle"
+                        aria-label="{{ trans('common.elements.change_theme')|default('تبديل المظهر') }}">
+                    <i class="sicon-moon theme-icon-dark"></i>
+                    <i class="sicon-sun theme-icon-light"></i>
+                </button>
+
+                {# Language & Currency (Salla official — theme-raed original) #}
+                {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+                    <salla-localization-modal data-testid="store-header-localization" show-trigger class="phonenx-localization"></salla-localization-modal>
+                {% endif %}
+
+                {# User menu (Salla official) #}
+                <salla-user-menu data-testid="store-header-user-menu" class="phonenx-user-menu"></salla-user-menu>
+
+                {# Cart (Salla official) #}
+                <salla-cart-summary data-testid="store-header-cart" class="phonenx-cart"></salla-cart-summary>
+
+                {# Mobile menu trigger (theme-raed mmenu pattern) #}
+                <a data-testid="store-header-mobile-toggle"
+                   class="lg:hidden mburger mburger--collapse phonenx-burger"
+                   href="#mobile-menu"
+                   aria-label="{{ trans('common.elements.open_menu')|default('فتح القائمة') }}">
+                    <i class="sicon-menu text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {# ===== Mobile Drawer Menu (theme-raed mmenu-light) ===== #}
+    <nav id="mobile-menu" class="hidden" aria-label="{{ trans('common.elements.mobile_menu')|default('قائمة الجوال') }}">
+        <salla-menu source="main"></salla-menu>
+    </nav>
+</header>

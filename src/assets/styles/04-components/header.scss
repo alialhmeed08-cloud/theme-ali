@@ -1,0 +1,206 @@
+/* ==========================================================================
+   PhoneX — Header
+   Layer: 04-components (theme-raed ITCSS)
+   Extracted from PhoneX-Responsive.html (.nav, .nav-inner, .brand, .nav-links)
+   ========================================================================== */
+
+.store-header.nav {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 100;
+    transition: background .4s, border-color .4s, backdrop-filter .4s;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+
+    /* Scrolled state (PhoneX .nav.scrolled) */
+    &.scrolled {
+        background: rgba(5, 5, 7, .78);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-color: var(--px-line);
+    }
+}
+
+html:not(.dark) .store-header.nav.scrolled {
+    background: rgba(247, 247, 250, .82);
+}
+
+.nav-inner {
+    @apply flex items-center;
+    gap: 34px;
+    padding-block: 18px;
+    padding-inline: max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-left));
+}
+
+/* ===== Brand / Logo ===== */
+.navbar-brand {
+    @apply flex items-baseline gap-0.5;
+    font-family: var(--font-display);
+    font-size: 27px;
+    letter-spacing: .5px;
+    color: var(--px-snow);
+    line-height: 1;
+
+    img {
+        @apply max-h-10 w-auto;
+    }
+
+    .brand-text {
+        font-family: var(--font-display);
+    }
+}
+
+/* ===== Main Navigation ===== */
+.nav-links {
+    @apply flex items-center;
+    gap: 26px;
+    margin-inline-start: auto;
+
+    /* Salla-menu renders links as <a> inside this container */
+    salla-menu {
+        @apply flex items-center;
+        gap: 26px;
+    }
+
+    a {
+        @apply relative;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--px-mist);
+        padding-block: 6px;
+        transition: color .3s;
+        white-space: nowrap;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 1px;
+            background: var(--px-ice);
+            transition: width .35s var(--px-ease);
+        }
+
+        &:hover,
+        &.on,
+        &.is-active {
+            color: var(--px-snow);
+
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+}
+
+/* ===== Nav Actions ===== */
+.nav-actions {
+    @apply flex items-center;
+    gap: 10px;
+}
+
+.icon-btn {
+    @apply grid place-items-center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--px-line);
+    border-radius: 12px;
+    color: var(--px-snow);
+    transition: border-color .3s, color .3s, background .3s;
+    position: relative;
+
+    &:hover {
+        border-color: var(--px-ice);
+        color: var(--px-ice);
+    }
+}
+
+/* Theme toggle icons */
+.phonenx-theme-toggle {
+    .theme-icon-light { display: none; }
+    .theme-icon-dark  { display: inline; }
+}
+html:not(.dark) .phonenx-theme-toggle {
+    .theme-icon-light { display: inline; }
+    .theme-icon-dark  { display: none; }
+}
+
+/* Salla components sizing inside nav-actions */
+.phonenx-search,
+.phonenx-user-menu,
+.phonenx-cart,
+.phonenx-localization {
+    @apply inline-flex;
+
+    button,
+    [slot="trigger"],
+    summary {
+        @apply grid place-items-center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--px-line);
+        border-radius: 12px;
+        color: var(--px-snow);
+        background: transparent;
+        transition: border-color .3s, color .3s;
+
+        &:hover {
+            border-color: var(--px-ice);
+            color: var(--px-ice);
+        }
+    }
+}
+
+/* Cart badge */
+.phonenx-cart {
+    .cart-count,
+    [class*="count"],
+    [class*="badge"] {
+        @apply absolute -top-1 -right-1;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        border-radius: 9px;
+        background: var(--px-ice);
+        color: var(--px-void);
+        font-size: 11px;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+    }
+}
+
+/* Mobile burger */
+.phonenx-burger {
+    @apply grid place-items-center lg:hidden;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--px-line);
+    border-radius: 12px;
+    color: var(--px-snow);
+
+    &:hover {
+        border-color: var(--px-ice);
+        color: var(--px-ice);
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1023px) {
+    .nav-links {
+        display: none;
+    }
+}
+
+/* ===== mmenu-light drawer (theme-raed pattern) ===== */
+#mobile-menu {
+    background: var(--px-panel);
+    color: var(--px-snow);
+
+    a {
+        color: var(--px-mist);
+        &:hover { color: var(--px-ice); }
+    }
+}

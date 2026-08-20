@@ -1,0 +1,50 @@
+/* ==========================================================================
+   PhoneX — Fonts (Almarai + DM Serif Display)
+   theme-raed loads fonts via @font-face in 01-settings/fonts.scss
+   ========================================================================== */
+
+/* Almarai — Arabic sans (PhoneX primary) */
+@font-face {
+    font-family: 'Almarai';
+    src: url('https://cdn.jsdelivr.net/npm/@fontsource/almarai@5.0.8/files/almarai-arabic-300-normal.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Almarai';
+    src: url('https://cdn.jsdelivr.net/npm/@fontsource/almarai@5.0.8/files/almarai-arabic-400-normal.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Almarai';
+    src: url('https://cdn.jsdelivr.net/npm/@fontsource/almarai@5.0.8/files/almarai-arabic-700-normal.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Almarai';
+    src: url('https://cdn.jsdelivr.net/npm/@fontsource/almarai@5.0.8/files/almarai-arabic-800-normal.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* DM Serif Display — display/serif (PhoneX brand & headings) */
+@font-face {
+    font-family: 'DM Serif Display';
+    src: url('https://cdn.jsdelivr.net/npm/@fontsource/dm-serif-display@5.0.8/files/dm-serif-display-latin-400-normal.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'DM Serif Display';
+    src: url('https://cdn.jsdelivr.net/npm/@fontsource/dm-serif-display@5.0.8/files/dm-serif-display-latin-400-italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}

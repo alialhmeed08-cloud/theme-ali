@@ -1,0 +1,405 @@
+/* ==========================================================================
+   PhoneX — px-* Components
+   ملف جديد يحتوي الـ CSS المفقود لـ phonex-products / phonex-reviews /
+   phonex-trust / phonex-brands  —  كلها كانت تستخدم .px-* بدون styles
+   Layer: 04-components (theme-raed ITCSS)
+   ========================================================================== */
+
+/* ===== Shared Section Layout ===== */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-left));
+}
+
+.px-section {
+    @apply py-20;
+}
+
+.px-section__head {
+    @apply flex items-end justify-between flex-wrap gap-4 mb-10;
+}
+
+.px-kicker {
+    @apply inline-block text-sm font-bold mb-2;
+    color: var(--px-ice);
+    letter-spacing: .5px;
+}
+
+.px-section__title {
+    @apply text-3xl font-bold;
+    color: var(--px-snow);
+
+    @media (max-width: 639px) { font-size: 26px; }
+}
+
+.px-section__sub {
+    @apply text-base mt-1;
+    color: var(--px-mist);
+}
+
+/* ===== Shared Buttons (px-btn system) ===== */
+.px-btn {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 text-base font-bold;
+    border-radius: var(--px-r);
+    transition: transform .3s var(--px-ease), box-shadow .3s, border-color .3s, color .3s;
+
+    &--ghost {
+        border: 1px solid var(--px-line2);
+        color: var(--px-snow);
+        background: transparent;
+
+        &:hover {
+            border-color: var(--px-ice);
+            color: var(--px-ice);
+            transform: translateY(-2px);
+        }
+    }
+
+    &--primary {
+        background: var(--px-ice);
+        color: var(--px-void);
+        border: 1px solid transparent;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 180, 204, .35);
+        }
+    }
+
+    &--sm {
+        @apply px-5 py-2.5 text-sm;
+    }
+}
+
+/* ===== Tabs ===== */
+.px-tabs {
+    @apply flex items-center gap-2 flex-wrap mb-8;
+}
+
+.px-tab {
+    @apply px-5 py-2.5 text-sm font-bold;
+    border: 1px solid var(--px-line);
+    border-radius: 999px;
+    color: var(--px-mist);
+    background: transparent;
+    transition: all .3s;
+
+    &:hover {
+        border-color: var(--px-ice);
+        color: var(--px-snow);
+    }
+
+    &.is-active {
+        background: var(--px-ice);
+        border-color: var(--px-ice);
+        color: var(--px-void);
+    }
+}
+
+/* ===== Products Grid ===== */
+.px-products {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+
+    @media (max-width: 639px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+/* ===== Product Card ===== */
+.px-card {
+    @apply flex flex-col;
+    background: var(--px-panel);
+    border: 1px solid var(--px-line);
+    border-radius: var(--px-r);
+    overflow: hidden;
+    transition: transform .4s var(--px-ease), border-color .4s, box-shadow .4s;
+    position: relative;
+
+    &:hover {
+        transform: translateY(-6px);
+        border-color: var(--px-ice);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, .25);
+    }
+
+    /* Reveal animation */
+    &.reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .5s ease, transform .5s var(--px-ease), border-color .4s;
+
+        &.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @for $i from 1 through 4 {
+            &[data-delay="#{$i}"] {
+                transition-delay: #{($i - 1) * 0.1}s;
+            }
+        }
+    }
+}
+
+.px-card__media {
+    @apply relative overflow-hidden;
+    aspect-ratio: 1 / 1;
+    background: var(--px-panel2);
+
+    img {
+        @apply w-full h-full object-cover;
+        transition: transform .5s var(--px-ease);
+    }
+
+    .px-card:hover & img {
+        transform: scale(1.04);
+    }
+}
+
+.px-card__flag {
+    @apply absolute top-3 right-3 px-3 py-1 text-xs font-bold;
+    border-radius: 8px;
+    z-index: 1;
+
+    &--sale {
+        background: var(--px-gold);
+        color: var(--px-void);
+    }
+
+    &--new {
+        background: var(--px-ice);
+        color: var(--px-void);
+    }
+}
+
+.px-card__body {
+    @apply flex flex-col flex-1 p-4;
+}
+
+.px-card__brand {
+    @apply text-xs font-bold mb-1;
+    color: var(--px-ice);
+    letter-spacing: .5px;
+}
+
+.px-card__name {
+    @apply text-sm font-bold flex-1 mb-3 leading-snug;
+    color: var(--px-snow);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.px-card__foot {
+    @apply flex items-center justify-between gap-2;
+}
+
+.px-card__price {
+    @apply text-base font-extrabold;
+    color: var(--px-ice);
+}
+
+.px-card__add {
+    @apply flex-shrink-0;
+}
+
+/* ===== Arabic numbers (px-num) ===== */
+.px-num {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ===== Reviews ===== */
+.px-reviews__summary {
+    @apply text-center text-lg font-bold mb-8;
+    color: var(--px-gold);
+}
+
+.px-reviews {
+    @apply grid gap-6;
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 1023px) { grid-template-columns: 1fr; }
+}
+
+.px-review {
+    @apply relative p-6;
+    background: var(--px-panel);
+    border: 1px solid var(--px-line);
+    border-radius: var(--px-r);
+    transition: transform .4s var(--px-ease), border-color .4s;
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: var(--px-ice);
+    }
+
+    &.reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .5s ease, transform .5s var(--px-ease), border-color .4s;
+
+        &.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @for $i from 1 through 6 {
+            &[data-delay="#{$i}"] { transition-delay: #{($i - 1) * 0.1}s; }
+        }
+    }
+}
+
+.px-review__quote {
+    @apply block text-5xl font-bold leading-none mb-3;
+    color: var(--px-ice);
+    font-family: var(--font-display);
+    opacity: .4;
+}
+
+.px-review__stars {
+    @apply text-lg mb-3;
+    color: var(--px-gold);
+    letter-spacing: 2px;
+}
+
+.px-review__text {
+    @apply text-sm leading-relaxed mb-5;
+    color: var(--px-mist);
+}
+
+.px-review__author {
+    @apply flex items-center gap-3;
+}
+
+.px-review__avatar {
+    @apply w-10 h-10 rounded-full object-cover flex-shrink-0;
+
+    &--letter {
+        @apply grid place-items-center text-base font-bold;
+        background: var(--px-ice-soft);
+        color: var(--px-ice);
+        border: 1px solid var(--px-line2);
+    }
+}
+
+.px-review__name {
+    @apply text-sm font-bold;
+    color: var(--px-snow);
+}
+
+.px-review__meta {
+    @apply text-xs mt-0.5;
+    color: var(--px-dim);
+}
+
+/* ===== Trust / Features (px-trust) ===== */
+.px-trust {
+    @apply grid gap-6;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media (max-width: 1023px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 639px)  { grid-template-columns: 1fr; }
+}
+
+.px-feature {
+    @apply relative p-6;
+    background: var(--px-panel);
+    border: 1px solid var(--px-line);
+    border-radius: var(--px-r);
+    transition: transform .4s var(--px-ease), border-color .4s;
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: var(--px-ice);
+    }
+
+    &.reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .5s ease, transform .5s var(--px-ease), border-color .4s;
+
+        &.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @for $i from 1 through 6 {
+            &[data-delay="#{$i}"] { transition-delay: #{($i - 1) * 0.12}s; }
+        }
+    }
+}
+
+.px-feature__num {
+    @apply block text-3xl font-bold mb-4;
+    color: var(--px-line2);
+    font-family: var(--font-display);
+    -webkit-text-stroke: 1px var(--px-dim);
+}
+
+.px-feature__icon {
+    @apply text-2xl mb-3;
+    color: var(--px-ice);
+}
+
+.px-feature__title {
+    @apply text-lg font-bold mb-2;
+    color: var(--px-snow);
+}
+
+.px-feature__desc {
+    @apply text-sm leading-relaxed;
+    color: var(--px-mist);
+}
+
+/* ===== Brands Marquee ===== */
+.px-marquee {
+    @apply overflow-hidden py-10;
+    border-block: 1px solid var(--px-line);
+    background: var(--px-coal);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.px-marquee__track {
+    @apply flex items-center gap-10;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+}
+
+.px-brand {
+    @apply flex-shrink-0 flex items-center;
+
+    img {
+        @apply h-8 w-auto object-contain;
+        filter: grayscale(1) brightness(.7);
+        transition: filter .3s;
+
+        &:hover { filter: none; }
+    }
+}
+
+.px-brand__name {
+    @apply text-lg font-bold px-2;
+    color: var(--px-dim);
+    font-family: var(--font-display);
+    white-space: nowrap;
+    transition: color .3s;
+
+    &:hover { color: var(--px-ice); }
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+html[dir="rtl"] .px-marquee__track {
+    animation-direction: reverse;
+}
+
+/* ===== Reveal observer (JS adds .visible) ===== */
+/* handled by initScrollEffects — observe .reveal elements */

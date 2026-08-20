@@ -1,0 +1,26 @@
+{# PhoneX — شريط الماركات المتحرك (home.phonex-brands) #}
+{% set brands = component.settings.get('brands') %}
+
+<div class="px-marquee" aria-hidden="true">
+    <div class="px-marquee__track">
+        {% if brands is not empty %}
+            {% for brand in brands %}
+                <span class="px-brand">
+                    {% if brand.image %}
+                        <img src="{{ brand.image }}" alt="{{ brand.name }}" loading="lazy">
+                    {% else %}
+                        <span class="px-brand__name">{{ brand.name }}</span>
+                    {% endif %}
+                </span>
+            {% endfor %}
+        {% else %}
+            <span class="px-brand"><span class="px-brand__name">Apple</span></span>
+            <span class="px-brand"><span class="px-brand__name">Samsung</span></span>
+            <span class="px-brand"><span class="px-brand__name">Google</span></span>
+            <span class="px-brand"><span class="px-brand__name">OnePlus</span></span>
+            <span class="px-brand"><span class="px-brand__name">Huawei</span></span>
+            <span class="px-brand"><span class="px-brand__name">Xiaomi</span></span>
+            <span class="px-brand"><span class="px-brand__name">Anker</span></span>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Settings */
+@import "01-settings/global";
+@import "01-settings/fonts";
+
+/* Generic */
+@import "02-generic/noise";
+@import "02-generic/charge-ring";
+@import "02-generic/progress-bar";
+
+/* Components */
+@import "04-components/header";
+@import "04-components/footer";
+@import "04-components/phonenx-mobile-nav";
+@import "04-components/phonenx-sections";
+@import "04-components/phonenx-hero";
+@import "04-components/phonenx-categories";
+@import "04-components/phonenx-featured";
+@import "04-components/phonenx-deal";
+@import "04-components/phonenx-features";
+@import "04-components/phonenx-testimonials";
+@import "04-components/phonenx-newsletter";
+/* ✅ FIX: ملف جديد — CSS مفقود لـ px-products / px-reviews / px-trust / px-marquee */
+@import "04-components/phonenx-px-components";

@@ -1,0 +1,34 @@
+{#
+| PhoneX — Mobile Bottom Navigation
+| Mirrors the fixed bottom nav from PhoneX-Responsive.html
+#}
+<nav class="phonenx-mobile-nav lg:hidden" aria-label="{{ trans('common.elements.mobile_navigation')|default('التنقل السفلي') }}">
+
+    <a href="{{ link('/') }}" class="mobile-nav-item {% if is_page('index') %}is-active{% endif %}">
+        <i class="sicon-home"></i>
+        <span>{{ trans('common.elements.home')|default('الرئيسية') }}</span>
+    </a>
+
+    <a href="{{ link('products') }}" class="mobile-nav-item">
+        <i class="sicon-smartphone"></i>
+        <span>{{ trans('common.elements.products')|default('الأجهزة') }}</span>
+    </a>
+
+    <button type="button" class="mobile-nav-item mobile-nav-search" onclick="document.querySelector('salla-search')?.open()" aria-label="{{ trans('common.elements.search')|default('بحث') }}">
+        <i class="sicon-search"></i>
+        <span>{{ trans('common.elements.search')|default('بحث') }}</span>
+    </button>
+
+    <a href="{{ link('wishlist') }}" class="mobile-nav-item">
+        <i class="sicon-heart"></i>
+        <span>{{ trans('common.elements.wishlist')|default('المفضلة') }}</span>
+    </a>
+
+    <button type="button" class="mobile-nav-item mobile-nav-cart" onclick="salla.event.dispatch('cart::open')" aria-label="{{ trans('common.elements.cart')|default('السلة') }}">
+        <i class="sicon-shopping-bag"></i>
+        <span>{{ trans('common.elements.cart')|default('السلة') }}</span>
+        {% if cart.items_count > 0 %}
+            <span class="mobile-nav-badge">{{ cart.items_count }}</span>
+        {% endif %}
+    </button>
+</nav>

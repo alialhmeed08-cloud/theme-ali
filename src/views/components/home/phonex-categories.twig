@@ -1,0 +1,69 @@
+{#
+| PhoneX — Categories Section
+| Uses salla-menu/categories from Salla if available, else theme.settings
+#}
+<section id="categories" class="phonenx-categories" aria-label="{{ trans('common.elements.categories')|default('التصنيفات') }}">
+    <div class="container">
+
+        {# ===== Section Header ===== #}
+        <div class="section-header">
+            <div>
+                <span class="section-label">{{ theme.settings.get('phonenx_categories_label')|default('التصنيفات') }}</span>
+                <h2 class="section-title serif">{{ theme.settings.get('phonenx_categories_title')|default('تصفّح حسب الفئة') }}</h2>
+            </div>
+            <a href="{{ link('categories') }}" class="section-link charge">
+                {{ trans('common.elements.all_categories')|default('كل الفئات') }}
+                <i class="sicon-arrow-left rtl:rotate-180"></i>
+            </a>
+        </div>
+
+        {# ===== Categories Grid ===== #}
+        <div class="categories-grid">
+
+            {% if categories is defined and categories|length > 0 %}
+                {# Dynamic: use Salla categories #}
+                {% for category in categories|slice(0, 4) %}
+                    <a href="{{ category.url }}" class="category-card charge" style="--cat-index: {{ loop.index }}">
+                        <div class="category-card-top">
+                            <span class="category-number">{{ loop.index < 10 ? '0' ~ loop.index : loop.index }}</span>
+                            <span class="category-tag">{{ category.name|upper|slice(0, 12) }}</span>
+                        </div>
+                        {% if category.image %}
+                            <img src="{{ category.image|cdn(400, 400) }}" alt="{{ category.name }}" loading="lazy">
+                        {% endif %}
+                        <h3 class="category-name">{{ category.name }}</h3>
+                        <p class="category-desc">{{ category.description|striptags|slice(0, 90) }}</p>
+                        <span class="category-cta">
+                            {{ trans('common.elements.shop_category')|default('تسوّق') }}
+                            <i class="sicon-arrow-left rtl:rotate-180"></i>
+                        </span>
+                    </a>
+                {% endfor %}
+            {% else %}
+                {# Static: use theme.settings #}
+                {% for i in 1..4 %}
+                    {% set cat_name = theme.settings.get('phonenx_cat' ~ i ~ '_name') %}
+                    {% set cat_desc = theme.settings.get('phonenx_cat' ~ i ~ '_desc') %}
+                    {% set cat_link = theme.settings.get('phonenx_cat' ~ i ~ '_link')|default(link('products')) %}
+                    {% set cat_img = theme.settings.get('phonenx_cat' ~ i ~ '_image') %}
+                    {% if cat_name %}
+                        <a href="{{ cat_link }}" class="category-card charge" style="--cat-index: {{ i }}">
+                            <div class="category-card-top">
+                                <span class="category-number">{{ i < 10 ? '0' ~ i : i }}</span>
+                            </div>
+                            {% if cat_img %}
+                                <img src="{{ cat_img }}" alt="{{ cat_name }}" loading="lazy">
+                            {% endif %}
+                            <h3 class="category-name">{{ cat_name }}</h3>
+                            <p class="category-desc">{{ cat_desc }}</p>
+                            <span class="category-cta">
+                                {{ trans('common.elements.shop_category')|default('تسوّق') }}
+                                <i class="sicon-arrow-left rtl:rotate-180"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>

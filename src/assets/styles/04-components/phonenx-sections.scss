@@ -1,0 +1,81 @@
+/* ==========================================================================
+   PhoneX — Shared Section Styles (headers, buttons, grids)
+   Layer: 04-components (theme-raed ITCSS)
+   ========================================================================== */
+
+/* ===== Section Headers ===== */
+.section-header {
+    @apply flex items-end justify-between flex-wrap gap-4 mb-10;
+
+    &.section-header-center {
+        @apply flex-col items-center text-center;
+    }
+
+    .section-label {
+        @apply inline-block text-sm font-bold mb-2;
+        color: var(--px-ice);
+        letter-spacing: .5px;
+    }
+
+    .section-title {
+        @apply text-3xl font-bold;
+        color: var(--px-snow);
+
+        @media (max-width: 639px) {
+            font-size: 26px;
+        }
+    }
+
+    .section-link {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold;
+        border: 1px solid var(--px-line2);
+        border-radius: 12px;
+        color: var(--px-snow);
+        transition: border-color .3s, color .3s;
+
+        &:hover {
+            border-color: var(--px-ice);
+            color: var(--px-ice);
+        }
+    }
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 text-base font-bold;
+    background: var(--px-ice);
+    color: var(--px-void);
+    border-radius: var(--px-r);
+    transition: transform .3s var(--px-ease), box-shadow .3s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 180, 204, .35);
+    }
+}
+
+.btn-secondary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 text-base font-bold;
+    border: 1px solid var(--px-line2);
+    border-radius: var(--px-r);
+    color: var(--px-snow);
+    background: transparent;
+    transition: border-color .3s, color .3s, transform .3s var(--px-ease);
+
+    &:hover {
+        border-color: var(--px-ice);
+        color: var(--px-ice);
+        transform: translateY(-2px);
+    }
+}
+
+/* ===== Products Grid ===== */
+.products-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+
+    @media (max-width: 639px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}

@@ -1,0 +1,85 @@
+{# PhoneX — آراء العملاء (home.phonex-reviews) #}
+{% set title   = component.settings.get('title') %}
+{% set summary = component.settings.get('summary') %}
+{% set items   = component.settings.get('items') %}
+
+<section class="px-section" id="reviews">
+    <div class="container">
+
+        <div class="px-section__head">
+            <div>
+                <span class="px-kicker">آراء العملاء</span>
+                <h2 class="px-section__title">{{ title|default('ماذا يقولون عنّا') }}</h2>
+            </div>
+        </div>
+
+        {% if summary %}
+            <div class="px-reviews__summary">⭐ {{ summary }}</div>
+        {% endif %}
+
+        <div class="px-reviews">
+            {% if items is not empty %}
+                {% for item in items %}
+                    {% set name = item['items.name'] %}
+                    <div class="px-review reveal" data-delay="{{ loop.index }}">
+                        <span class="px-review__quote">”</span>
+                        <div class="px-review__stars">
+                            {% set stars = item['items.stars']|default(5) %}
+                            {% for i in 1..5 %}{{ i <= stars ? '★' : '☆' }}{% endfor %}
+                        </div>
+                        <p class="px-review__text">{{ item['items.text'] }}</p>
+                        <div class="px-review__author">
+                            {% if item['items.avatar'] %}
+                                <img class="px-review__avatar" src="{{ item['items.avatar'] }}" alt="{{ name }}" loading="lazy">
+                            {% else %}
+                                <span class="px-review__avatar px-review__avatar--letter">{{ name|slice(0, 1) }}</span>
+                            {% endif %}
+                            <div>
+                                <div class="px-review__name">{{ name }}</div>
+                                {% if item['items.meta'] %}<div class="px-review__meta">{{ item['items.meta'] }}</div>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="px-review reveal" data-delay="1">
+                    <span class="px-review__quote">”</span>
+                    <div class="px-review__stars">★★★★★</div>
+                    <p class="px-review__text">أفضل متجر جوالات تعاملت معه — الجهاز وصل في أقل من 12 ساعة وكان مغلّفاً بشكل احترافي جداً. سعر ممتاز وخدمة من أعلى مستوى</p>
+                    <div class="px-review__author">
+                        <span class="px-review__avatar px-review__avatar--letter">خ</span>
+                        <div>
+                            <div class="px-review__name">خالد العمري</div>
+                            <div class="px-review__meta">الرياض — اشترى iPhone 16 Pro</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-review reveal" data-delay="2">
+                    <span class="px-review__quote">”</span>
+                    <div class="px-review__stars">★★★★★</div>
+                    <p class="px-review__text">استبدلت جهازي القديم وحصلت على خصم رائع على الجديد. الموظفون محترفون وإجراءات الاستبدال كانت سهلة جداً. شكراً PhoneX!</p>
+                    <div class="px-review__author">
+                        <span class="px-review__avatar px-review__avatar--letter">س</span>
+                        <div>
+                            <div class="px-review__name">سارة القحطاني</div>
+                            <div class="px-review__meta">جدة — اشترت Samsung S25 Ultra</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-review reveal" data-delay="3">
+                    <span class="px-review__quote">”</span>
+                    <div class="px-review__stars">★★★★★</div>
+                    <p class="px-review__text">التقسيط كان سهل جداً والموقع سهل الاستخدام. وصلني الجهاز وأنا في الدمام في اليوم التالي — تجربة تسوق رائعة ما توقعتها أبداً</p>
+                    <div class="px-review__author">
+                        <span class="px-review__avatar px-review__avatar--letter">ف</span>
+                        <div>
+                            <div class="px-review__name">فهد الدوسري</div>
+                            <div class="px-review__meta">الدمام — اشترى Google Pixel 9</div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</section>

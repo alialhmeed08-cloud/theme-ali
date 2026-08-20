@@ -1,0 +1,121 @@
+{# PhoneX — صفحة المنتج #}
+{% extends "layouts.master" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ 'pages.css' | asset }}">
+{% endblock %}
+
+{% block content %}
+    {% set images = (product is defined and product.images is defined) ? product.images : [] %}
+
+    <section class="px-section px-single">
+        <div class="container">
+
+            <div class="px-single__crumbs">
+                <salla-breadcrumb data-testid="store-breadcrumb"></salla-breadcrumb>
+            </div>
+
+            <div class="px-single__grid">
+
+                <div class="px-single__gallery" data-gallery>
+                    <div class="px-gallery__main">
+                        {% if product.sale_price is defined and product.sale_price %}
+                            <span class="px-card__flag px-card__flag--sale">خصم</span>
+                        {% endif %}
+                        <img data-gallery-main
+                             src="{{ (images is not empty) ? (images[0].url|default(images[0])) : product.thumbnail|default(theme.settings.get('placeholder')) }}"
+                             alt="{{ product.name }}">
+                    </div>
+                    {% if images|length > 1 %}
+                        <div class="px-gallery__thumbs">
+                            {% for img in images %}
+                                <button type="button"
+                                        class="px-gallery__thumb{{ loop.first ? ' is-active' : '' }}"
+                                        data-gallery-thumb="{{ img.url|default(img) }}"
+                                        aria-label="صورة {{ loop.index }}">
+                                    <img src="{{ img.url|default(img) }}" alt="" loading="lazy">
+                                </button>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="px-single__info">
+
+                    {% if product.brand is defined and product.brand.name is defined %}
+                        <a href="{{ product.brand.url|default(store.url ~ 'products') }}" class="px-single__brand">
+                            {{ product.brand.name }}
+                        </a>
+                    {% endif %}
+
+                    <h1 class="px-single__title">{{ product.name }}</h1>
+
+                    <div class="px-single__rating">
+                        <salla-reviews-summary product-id="{{ product.id }}"></salla-reviews-summary>
+                    </div>
+
+                    <div class="px-single__prices">
+                        {% if product.sale_price is defined and product.sale_price %}
+                            <span class="px-single__price px-num">{{ product.sale_price }}</span>
+                            <span class="px-single__old px-num">{{ product.price }}</span>
+                        {% else %}
+                            <span class="px-single__price px-num">{{ product.price }}</span>
+                        {% endif %}
+                    </div>
+
+                    <salla-installment product-id="{{ product.id }}" data-testid="product-installment"></salla-installment>
+
+                    <salla-product-options product-id="{{ product.id }}" data-testid="product-options"></salla-product-options>
+
+                    <div class="px-single__actions">
+                        <salla-quantity-input product-id="{{ product.id }}" data-testid="product-quantity"></salla-quantity-input>
+                        <salla-add-product-button product-id="{{ product.id }}" data-testid="product-add"></salla-add-product-button>
+                    </div>
+
+                    <salla-quick-buy product-id="{{ product.id }}" data-testid="product-quick-buy"></salla-quick-buy>
+
+                    <salla-product-availability product-id="{{ product.id }}"></salla-product-availability>
+
+                    <ul class="px-single__bullets">
+                        <li><i class="sicon-packed-box"></i> توصيل خلال 24 ساعة لجميع المناطق</li>
+                        <li><i class="sicon-award-ribbon"></i> ضمان رسمي كامل على الجهاز</li>
+                        <li><i class="sicon-calendar-date"></i> استبدال مجاني خلال 7 أيام</li>
+                    </ul>
+
+                    {% if product.sku is defined and product.sku %}
+                        <p class="px-single__meta">رمز المنتج: <b>{{ product.sku }}</b></p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="px-single__tabs" data-single-tabs>
+                <div class="px-tabs">
+                    <button type="button" class="px-tab is-active" data-tab-target="px-panel-desc">الوصف</button>
+                    <button type="button" class="px-tab" data-tab-target="px-panel-specs">المواصفات</button>
+                    <button type="button" class="px-tab" data-tab-target="px-panel-reviews">التقييمات</button>
+                </div>
+
+                <div class="px-tabpanel" id="px-panel-desc">
+                    {% hook 'product:single.description.start' %}
+                    <div class="px-tabpanel__content">
+                        {{ product.description|default('')|raw }}
+                    </div>
+                    {% hook 'product:single.description' %}
+                </div>
+
+                <div class="px-tabpanel" id="px-panel-specs" hidden>
+                    <salla-metadata product-id="{{ product.id }}" data-testid="product-metadata"></salla-metadata>
+                </div>
+
+                <div class="px-tabpanel" id="px-panel-reviews" hidden>
+                    <salla-reviews product-id="{{ product.id }}" data-testid="product-reviews"></salla-reviews>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script defer src="{{ 'pages.js' | asset }}"></script>
+{% endblock %}

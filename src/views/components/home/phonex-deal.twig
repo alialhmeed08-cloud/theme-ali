@@ -1,0 +1,93 @@
+{#
+| PhoneX — Deal of the Day (with Countdown)
+| Uses Salla product + theme.settings for deadline
+#}
+{# ✅ FIX: deal_product كانت تُستخدم بدون تعريف — لازم تجي من component.settings #}
+{% set deal_product = component.settings.get('product') %}
+<section id="deal" class="phonenx-deal" aria-label="{{ trans('common.elements.deals')|default('عرض اليوم') }}">
+    <div class="container">
+        <div class="deal-card">
+
+            {# ===== Deal Info ===== #}
+            <div class="deal-info">
+                <div class="deal-badge">
+                    🔥 {{ theme.settings.get('phonenx_deal_badge')|default('عرض محدود الوقت — اليوم الواحد') }}
+                </div>
+
+                <h2 class="deal-title serif">
+                    {{ theme.settings.get('phonenx_deal_title')|default('لا تفوّت هذا السعر') }}
+                </h2>
+
+                <p class="deal-subtitle">
+                    {{ theme.settings.get('phonenx_deal_subtitle')|default('ينتهي العرض خلال:') }}
+                </p>
+
+                {# ===== Countdown Timer ===== #}
+                {% if theme.settings.get('phonenx_deal_countdown', true) %}
+                    {# ✅ FIX: '+1 day'|date(...) لا يعمل في Twig — الصحيح "now"|date_modify("+1 day")|date(...) #}
+                    {% set deadline = theme.settings.get('phonenx_deal_deadline')|default("now"|date_modify("+1 day")|date("Y-m-d H:i:s")) %}
+                    <div class="deal-countdown"
+                         id="phonenx-countdown"
+                         data-deadline="{{ deadline }}">
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="cd-hours">00</span>
+                            <span class="countdown-label">{{ trans('common.time.hours')|default('ساعة') }}</span>
+                        </div>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="cd-minutes">00</span>
+                            <span class="countdown-label">{{ trans('common.time.minutes')|default('دقيقة') }}</span>
+                        </div>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="cd-seconds">00</span>
+                            <span class="countdown-label">{{ trans('common.time.seconds')|default('ثانية') }}</span>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {# ===== Deal Product Info ===== #}
+                {% if deal_product is defined and deal_product %}
+                    <div class="deal-product-info">
+                        <span class="deal-product-name">{{ deal_product.name }}</span>
+                        {% if deal_product.sale_percentage %}
+                            <span class="deal-save-badge">
+                                {{ trans('common.elements.save')|default('وفّر') }} {{ deal_product.save_amount|money }}
+                            </span>
+                        {% endif %}
+                        <div class="deal-prices">
+                            <span class="deal-price">{{ deal_product.price|money }}</span>
+                            {% if deal_product.has_sale %}
+                                <span class="deal-old-price">{{ deal_product.regular_price|money }}</span>
+                            {% endif %}
+                        </div>
+
+                        {% if deal_product.stock_percentage is defined %}
+                            <div class="deal-stock">
+                                <div class="stock-bar">
+                                    <div class="stock-fill" style="width: {{ deal_product.stock_percentage }}%"></div>
+                                </div>
+                                <span class="stock-text">
+                                    {{ trans('common.elements.sold')|default('نفد') }} {{ deal_product.stock_percentage }}%
+                                </span>
+                            </div>
+                        {% endif %}
+
+                        <a href="{{ deal_product.url }}" class="btn-primary charge deal-cta">
+                            {{ trans('common.elements.get_deal')|default('احصل على العرض') }}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            {# ===== Deal Image ===== #}
+            <div class="deal-visual">
+                {% if deal_product is defined and deal_product and deal_product.image %}
+                    <img src="{{ deal_product.image|cdn(600, 600) }}" alt="{{ deal_product.name }}" loading="lazy">
+                {% elseif theme.settings.get('phonenx_deal_image') %}
+                    <img src="{{ theme.settings.get('phonenx_deal_image') }}" alt="{{ theme.settings.get('phonenx_deal_title') }}" loading="lazy">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

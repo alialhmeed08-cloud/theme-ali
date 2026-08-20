@@ -1,0 +1,34 @@
+{#
+| PhoneX — Store Features (Why Us)
+| Numbered features: 01, 02, 03, 04
+#}
+<section id="trust" class="phonenx-features" aria-label="{{ trans('common.elements.store_features')|default('لماذا نحن') }}">
+    <div class="container">
+
+        {# ===== Section Header ===== #}
+        <div class="section-header section-header-center">
+            <span class="section-label">{{ theme.settings.get('phonenx_features_label')|default('لماذا ' ~ store.name ~ '؟') }}</span>
+            <h2 class="section-title serif">{{ theme.settings.get('phonenx_features_title')|default('تجربة تُصنع بثقة') }}</h2>
+        </div>
+
+        {# ===== Features Grid ===== #}
+        <div class="features-grid">
+            {% for i in 1..4 %}
+                {% set f_title = theme.settings.get('phonenx_feature' ~ i ~ '_title') %}
+                {% set f_desc = theme.settings.get('phonenx_feature' ~ i ~ '_desc') %}
+                {% set f_icon = theme.settings.get('phonenx_feature' ~ i ~ '_icon') %}
+
+                {% if f_title %}
+                    <div class="feature-card charge">
+                        <span class="feature-number">{{ i < 10 ? '0' ~ i : i }}</span>
+                        {% if f_icon %}
+                            <i class="{{ f_icon }} feature-icon"></i>
+                        {% endif %}
+                        <h3 class="feature-title">{{ f_title }}</h3>
+                        <p class="feature-desc">{{ f_desc }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
